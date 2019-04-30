@@ -8,9 +8,174 @@
 <div class='sheet-page1'>
 	<div class='sheet-header'>
 		<input name='attr_character_name'>
-		<label class='sheet-age-label'></label><input type='number' name='attr_' min=0 value=0>
-		<label class='sheet-gender-label'></label><input type='text' name=''>
+		<label class='sheet-age-label'></label><input type='number' name='attr_age' min=0 value=0>
+		<label class='sheet-gender-label'></label><input type='text' name='attr_gender'>
+		<label class='sheet-house-label'></label><input type='text' name='attr_house'>
+	</div>
+	<div class='sheet-abilities-label'></div>
+	<div class='sheet-2colrow'>
+		<div class='sheet-col'>
+			<div class='row-header'>
+				<label class='sheet-rating-label'></label>
+				<label class='sheet-ability-label'></label>
+				<label class='sheet-specialties-label'></label>
+			</div>
+			<div>
+				<input type='number' min=0 max=10 value=2 name='attr_agility_rating'>
+				<label class='sheet-agility-label'></label>
+				<span class='sheet-agility-specs'></span>
+				<div class='sheet-specialties-div' id='sheet-agility-specs'>
+					<button>Close</button>
+					<fieldset class='repeating_agility_specialities'>
+						<input type='number' name='attr_spec_rating' min=1 value=1>
+						<input type='text' name='attr_spec_name'>
+					</fieldset>	
+				</div>
+			</div>
+		</div>
+		<div class='sheet-col'>
+			<!--Right Abilities Column --->
+		</div>
+	</div>
+	<div class='sheet-2colrow'>
+		<div class='sheet-col'>
+			<label class='sheet-qualities-label'></label>
+			<textarea name='attr_qualities'></textarea><!-- TODO: Investigate Qualities. -->
+			<label class='sheet-destinypoints-label'></label>
+			<div>
+				<input type='checkbox' name='attr_destiny_1'>
+				<input type='checkbox' name='attr_destiny_2'>
+				<input type='checkbox' name='attr_destiny_3'>
+				<input type='checkbox' name='attr_destiny_4'>
+				<input type='checkbox' name='attr_destiny_5'>
+				<input type='checkbox' name='attr_destiny_6'>
+				<input type='checkbox' name='attr_destiny_7'>
+				<input type='checkbox' name='attr_destiny_8'>
+			</div>
+		</div>
+		<div class='sheet-col sheet-2colrow'>
+			<div class='sheet-col'>
+				<label class='sheet-intrigue-label'></label>
+				<label class='sheet-intriguedefense-label'></label>
+				<input type='text' value='@{agility_rating}+@{cunning_rating}+@{status_rating}' disabled>
+				<label class='sheet-composure-label'></label>
+				<input type='text' value='@{will_rating}*3' disabled>
+			</div>
+			<div class='sheet-col'>
+				<label class='sheet-combat-label'></label>
+				<label class='sheet-combatdefense-label'></label>
+				<input type='text' value='@{agility_rating}+@{athletics_rating}+@{awareness_rating}+@{defensive_bonus}-@{armor_penalty}' disabled>
+				<label class='sheet-composure-label'></label>
+				<input type='text' value='@{endurance_rating}*3' disabled>				
+			</div>
+		</div>
+	</div>
+	<div class='sheet-2and1'>
+		<div class='sheet-leftcol'>
+			<label class='sheet-weapons-label'></label>
+			<label class='sheet-attack-label'></label>
+			<label class='sheet-testdice-label'></label>
+			<label class='sheet-weapondamage-label'></label>
+			<fieldset class='repeating_attacks'>
+				<!-- Attacks -->
+			</fieldset>
+		</div>
+		<div class='sheet-rightcol'>
+			<label class='sheet-armor-label'></label>
+			<textarea name='attr_armor'></textarea>
+			<label class='sheet-armorrating-label'></label>
+			<input type='number' min=0 name='attr_armor_rating'>
+			<label class='sheet-armorpenalty-label'></label>
+			<input type='number' min=0 name='attr_armor_penalty'>		 
+		</div>
+	</div>
+	<label class='sheet-damage-label'></label>
+	<div>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_1'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_2'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_3'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_4'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_5'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_6'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_7'><br>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_8'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_9'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_10'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_11'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_12'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_13'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_14'><br>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_15'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_16'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_17'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_18'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_19'>		   
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_20'>
+		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_21'>		   
+	</div>
+	<label class='sheet-injuries-label'></label>
+	<div>
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_1'>
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_2'>
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_3'>			
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_4'>
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_5'>
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_6'>
+		<input type='checkbox' class='sheet-injurybox' name='attr_injury_7'>
+	</div>
+	<label class='sheet-wounds-label'></label>
+	<div>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_1'>
 	</div>
 </div>
 <div class='sheet-page2'>
+	<div class='sheet-2colrow'>
+		<div class='sheet-col'>
+			<label class='sheet-equipment-label'></label>
+			<textarea name='attr_equipment'></textarea>
+		</div>
+		<div class='sheet-col'>
+			<label class='sheet-appearance-label'></label>
+			<div class='sheet-2colrow'>
+				<div class='sheet-col'>
+					<label class='sheet-height-label'></label><input type='text' name='attr_height'>
+					<label class='sheet-eyecolor-label'></label><input type='text' name='attr_eye_color'>		
+				</div>
+				<div class='sheet-col'>
+					<label class='sheet-weight-label'></label><input type='text' name='attr_weight'>
+					<label class='sheet-haircolor-label'></label><input type='text' name='attr_hair_color'>		
+				</div>
+			</div>
+			<label class='sheet-mannerisms-label'></label>
+			<textarea name='attr_mannerisms'></textarea>
+			<label class='sheet-features-label'></label>
+			<textarea name='attr_features'></textarea>
+			<label class='sheet-retainers-label'></label>
+			<textarea name='attr_retainers'></textarea>
+		</div>		
+	</div>
+	<label class='sheet-personalhistory-label'></label>
+	<textarea name='attr_personal_history'></textarea>
+	<div class='sheet-3colrow'>
+		<div class='sheet-col'>
+			<label class='sheet-allies-label'></label>
+			<textarea name='attr_allies'></textarea>
+			<label class='sheet-heraldry-label'></label>
+			<textarea name='attr_heraldry'></textarea>
+		</div>
+		<div class='sheet-col'>
+			<label class='sheet-enemies-label'></label>
+			<textarea name='attr_enemies'></textarea>
+			<label class='sheet-portrait-label'></label>
+			<textarea name='attr_portrait'></textarea>		
+		</div>
+		<div class='sheet-col'>
+			<label class='sheet-oaths-label'></label>
+			<textarea name='attr_oaths'></textarea>
+			<label class='sheet-motto-label'></label>
+			<textarea name='attr_motto'></textarea>		
+		</div>		
+	</div>
+</div>
+<div class='sheet-page3'>
 </div>
