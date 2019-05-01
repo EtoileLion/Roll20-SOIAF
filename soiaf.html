@@ -8,21 +8,24 @@
 <div class='sheet-page1'>
 	<div class='sheet-header'>
 		<input name='attr_character_name'>
-		<label class='sheet-age-label'></label><input type='number' name='attr_age' min=0 value=0>
-		<label class='sheet-gender-label'></label><input type='text' name='attr_gender'>
-		<label class='sheet-house-label'></label><input type='text' name='attr_house'>
+		<label class='sheet-age-label' data-i18n='age'>Age</label>
+		<input type='number' name='attr_age' min=0 value=0>
+		<label class='sheet-gender-label' data-i18n='gender'>Gender</label>
+		<input type='text' name='attr_gender'>
+		<label class='sheet-house-label' data-i18n='house'>House</label>
+		<input type='text' name='attr_house'>
 	</div>
 	<div class='sheet-abilities-label'></div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
 			<div class='row-header'>
-				<label class='sheet-rating-label'></label>
-				<label class='sheet-ability-label'></label>
-				<label class='sheet-specialties-label'></label>
+				<label class='sheet-rating-label' data-i18n='rating'>Rating</label>
+				<label class='sheet-ability-label' data-i18n='abilities'>Abilities</label>
+				<label class='sheet-specialties-label' data-i18n='specialities'>Specialities</label>
 			</div>
 			<div>
 				<input type='number' min=0 max=10 value=2 name='attr_agility_rating'>
-				<label class='sheet-agility-label'></label>
+				<label class='sheet-agility-label' data-i18n='agility'></label>
 				<span class='sheet-agility-specs'></span>
 				<div class='sheet-specialties-div' id='sheet-agility-specs'>
 					<button>Close</button>
@@ -39,9 +42,9 @@
 	</div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
-			<label class='sheet-qualities-label'></label>
+			<label class='sheet-qualities-label' data-i18n='qualities'>Qualities</label>
 			<textarea name='attr_qualities'></textarea><!-- TODO: Investigate Qualities. -->
-			<label class='sheet-destinypoints-label'></label>
+			<label class='sheet-destinypoints-label' data-i18n='destiny'>Destiny Points</label>
 			<div>
 				<input type='checkbox' name='attr_destiny_1'>
 				<input type='checkbox' name='attr_destiny_2'>
@@ -55,41 +58,41 @@
 		</div>
 		<div class='sheet-col sheet-2colrow'>
 			<div class='sheet-col'>
-				<label class='sheet-intrigue-label'></label>
-				<label class='sheet-intriguedefense-label'></label>
+				<label class='sheet-intrigue-label' data-i18n='intrigue'>Intrigue</label>
+				<label class='sheet-intriguedefense-label' data-i18n='intriguedef'>Intrigue Defense</label>
 				<input type='text' value='@{agility_rating}+@{cunning_rating}+@{status_rating}' disabled>
-				<label class='sheet-composure-label'></label>
+				<label class='sheet-composure-label' data-i18n='composure'>Composure</label>
 				<input type='text' value='@{will_rating}*3' disabled>
 			</div>
 			<div class='sheet-col'>
-				<label class='sheet-combat-label'></label>
-				<label class='sheet-combatdefense-label'></label>
+				<label class='sheet-combat-label' data-i18n='combat'>Combat</label>
+				<label class='sheet-combatdefense-label' data-i18n='combatdef'>Combat Defense</label>
 				<input type='text' value='@{agility_rating}+@{athletics_rating}+@{awareness_rating}+@{defensive_bonus}-@{armor_penalty}' disabled>
-				<label class='sheet-composure-label'></label>
+				<label class='sheet-health-label' data-i18n='health'>Health</label>
 				<input type='text' value='@{endurance_rating}*3' disabled>				
 			</div>
 		</div>
 	</div>
 	<div class='sheet-2and1'>
 		<div class='sheet-leftcol'>
-			<label class='sheet-weapons-label'></label>
-			<label class='sheet-attack-label'></label>
-			<label class='sheet-testdice-label'></label>
-			<label class='sheet-weapondamage-label'></label>
+			<label class='sheet-weapons-label' data-i18n='weapons'>Weapons</label>
+			<label class='sheet-attack-label' data-i18n='attack'>Attack</label>
+			<label class='sheet-testdice-label' data-i18n='testdice'>Test Dice</label>
+			<label class='sheet-weapondamage-label' data-i18n='Weapon Damage'>Weapon Damage</label>
 			<fieldset class='repeating_attacks'>
 				<!-- Attacks -->
 			</fieldset>
 		</div>
 		<div class='sheet-rightcol'>
-			<label class='sheet-armor-label'></label>
+			<label class='sheet-armor-label' data-i18n='armor'>Armor</label>
 			<textarea name='attr_armor'></textarea>
-			<label class='sheet-armorrating-label'></label>
+			<label class='sheet-armorrating-label' data-i18n='armorrating'>Armor Rating</label>
 			<input type='number' min=0 name='attr_armor_rating'>
-			<label class='sheet-armorpenalty-label'></label>
+			<label class='sheet-armorpenalty-label' data-i18n='armorpenalty'>Armor Penalty</label>
 			<input type='number' min=0 name='attr_armor_penalty'>		 
 		</div>
 	</div>
-	<label class='sheet-damage-label'></label>
+	<label class='sheet-damage-label' data-i18n='damage'>Damage</label>
 	<div>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_1'>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_2'>		   
@@ -113,7 +116,7 @@
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_20'>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_21'>		   
 	</div>
-	<label class='sheet-injuries-label'></label>
+	<label class='sheet-injuries-label' data-i18n='injuries'>Injuries</label>
 	<div>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_1'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_2'>
@@ -123,7 +126,7 @@
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_6'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_7'>
 	</div>
-	<label class='sheet-wounds-label'></label>
+	<label class='sheet-wounds-label' data-i18n='wounds'>Wounds</label>
 	<div>
 		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_1'>
 	</div>
@@ -179,3 +182,16 @@
 </div>
 <div class='sheet-page3'>
 </div>
+
+<rolltemplate class="sheet-rolltemplate-cinac">
+	<table>
+		<tr><th colspan='2'>Character In A Can</th></tr>
+		<tr><th>Age</th><td>{{age}}</td></tr>
+		<tr><th>Status</th><td>{{status}}</td></tr>
+		<tr><th>Background Event</th><td>{{background}}</td></tr>
+		<tr><th>Goals</th><td>{{goal}}</td></tr>
+		<tr><th>Motivation</th><td>{{motive}}</td></tr>
+		<tr><th>Virtue</th><td>{{virtue}}</td></tr>
+		<tr><th>Vice</th><td>{{vice}}</td></tr>
+	</table>
+</rolltemplate>
