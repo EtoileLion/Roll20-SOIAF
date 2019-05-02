@@ -6,22 +6,22 @@
 <!--- External Font purchased from Blambot and is not licensed for use outside of this sheet. --->
 
 <div class='sheet-page1'>
+	<input name='attr_character_name'>
 	<div class='sheet-header'>
-		<input name='attr_character_name'>
-		<label class='sheet-age-label' data-i18n='age'>Age</label>
+		<label class='sheet-age-label sheet-mainlabel' data-i18n='age'>Age</label>
 		<input type='number' name='attr_age' min=0 value=0>
-		<label class='sheet-gender-label' data-i18n='gender'>Gender</label>
-		<input type='text' name='attr_gender'>
-		<label class='sheet-house-label' data-i18n='house'>House</label>
-		<input type='text' name='attr_house'>
+		<label class='sheet-gender-label sheet-mainlabel' data-i18n='gender'>Gender</label>
+		<input type='text' name='attr_gender' class='sheet-flexthis'>
+		<label class='sheet-house-label sheet-mainlabel' data-i18n='house'>House</label>
+		<input type='text' name='attr_house' class='sheet-flexthis'>
 	</div>
-	<div class='sheet-abilities-label'></div>
+	<div class='sheet-abilities-label sheet-mainlabel' data-i18n='abilities'>Abilities</div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
 			<div class='row-header'>
-				<label class='sheet-rating-label' data-i18n='rating'>Rating</label>
-				<label class='sheet-ability-label' data-i18n='abilities'>Abilities</label>
-				<label class='sheet-specialties-label' data-i18n='specialities'>Specialities</label>
+				<label class='sheet-rating-label sheet-mainlabel' data-i18n='rating'>Rating</label>
+				<label class='sheet-ability-label sheet-mainlabel' data-i18n='ability'>Ability</label>
+				<label class='sheet-specialties-label sheet-mainlabel' data-i18n='specialities'>Specialities</label>
 			</div>
 			<div>
 				<input type='number' min=0 max=10 value=2 name='attr_agility_rating'>

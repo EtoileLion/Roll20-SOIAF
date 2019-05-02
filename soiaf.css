@@ -1,0 +1,83 @@
+@font-face {
+	font-family: GOT;
+	src: url("https://shadowrequiem.com/tempshare/StrongholdBB.woff?raw=true");
+}
+
+.sheet-mainlabel {
+    background-color: #4a798b;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;
+	font-weight: normal;
+}
+
+label {
+	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;
+}
+
+.sheet-page1 {
+	background-color:#EEE;
+}
+
+.sheet-page2,
+.sheet-page3 {
+	display: none;
+}
+
+/* Page 1 Formatting */
+
+.sheet-header {
+	display: flex;
+}
+.sheet-page1 > input:first-child {
+    width: 100%;
+    font-family: GOT;
+    background: transparent;
+    border: none;
+    font-size: 50px;
+}
+.sheet-flexthis {
+	flex: 1;
+}
+
+.sheet-age-label {
+	width: 50px;
+}
+.sheet-house-label {
+	width: 150px;
+}
+.sheet-gender-label {
+	width: 166px;
+}
+
+
+
+
+
+/* Ice */
+.sheet-styler[value='ice'] ~ .sheet-page .sheet-mainlabel {
+	
+}
+
+/* Fire */
+.sheet-styler[value='fire'] ~ .sheet-page .sheet-mainlabel {
+}
+
+/* Stone */
+.sheet-styler[value='stone'] ~ .sheet-page .sheet-mainlabel {
+}
+
+/* Character In A Can Styling */
+
+.sheet-rolltemplate-cinac th {
+    text-align: center;
+}
+.sheet-rolltemplate-cinac tr:nth-child(even) {
+    background-color:#CCC;
+}
+.sheet-rolltemplate-cinac tr:first-child {
+    background-color:#CCE;
+}
