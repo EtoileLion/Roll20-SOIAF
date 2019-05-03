@@ -3,28 +3,100 @@
 	src: url("https://shadowrequiem.com/tempshare/StrongholdBB.woff?raw=true");
 }
 
+@font-face {
+	font-family: GOTDeco;
+	src: url("https://shadowrequiem.com/tempshare/StrongholdDecoBB.woff?raw=true");
+}
+
 .sheet-mainlabel {
     background-color: #4a798b;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     font-size: 25px;
-    padding: 10px;
+    padding: 5px 10px;
     text-align: center;
 	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;
 	font-weight: normal;
+	vertical-align: center;
+}
+
+.sheet-nopadding {
+	padding: 5px 0px;
 }
 
 label {
 	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;
+	margin-bottom: 3px;
 }
 
-.sheet-page1 {
+.sheet-page1,
+.sheet-page2,
+.sheet-page3 {
 	background-color:#EEE;
 }
 
+/*Page Toggler */
+.sheet-page1,
 .sheet-page2,
 .sheet-page3 {
 	display: none;
+}
+
+.sheet-charpage[value="1"] ~ .sheet-page1,
+.sheet-charpage[value="2"] ~ .sheet-page2,
+.sheet-charpage[value="3"] ~ .sheet-page3 {
+	display: block;
+}
+
+.sheet-pfcontainer {
+    display: inline;
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.sheet-pfcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.sheet-pfradio {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 19px;
+	width: 19px;
+	background-color: #eee;
+	border-radius: 25%;
+	font-family: Pictos;	
+}
+.sheet-pfcontainer:hover input ~ .sheet-pfradio {
+    background-color: #ccc;
+}
+.sheet-pfcontainer input:checked ~ .sheet-pfradio:after {
+	display: block;
+}
+
+.sheet-page1 .sheet-pfcontainer:nth-child(1) span,
+.sheet-page2 .sheet-pfcontainer:nth-child(2) span,
+.sheet-page3 .sheet-pfcontainer:nth-child(3) span {
+	background-color: #f99;
+}
+
+.sheet-pageswitch {
+	float: right;
+	right: 20px;
+}
+
+.sheet-pagetogglediv {
+	position: absolute;
+    top: 80px;
+    right: 23px;
 }
 
 /* Page 1 Formatting */
@@ -32,13 +104,18 @@ label {
 .sheet-header {
 	display: flex;
 }
-.sheet-page1 > input:first-child {
+.sheet-charname {
     width: 100%;
-    font-family: GOT;
+    font-family: GOTDeco;
     background: transparent;
     border: none;
     font-size: 50px;
 }
+
+.sheet-flex-box {
+	display: flex !important;
+}
+
 .sheet-flexthis {
 	flex: 1;
 }
@@ -46,13 +123,143 @@ label {
 .sheet-age-label {
 	width: 50px;
 }
+
 .sheet-house-label {
 	width: 150px;
 }
+
 .sheet-gender-label {
 	width: 166px;
 }
 
+.sheet-abilities-label {
+	margin-top: 2px;
+	padding: 5px 0px;
+}
+
+tr:not(:first-child) {
+	border-top: 2px white solid;
+}
+.sheet-abilities-table {
+	width: 100%;
+	text-align: center;
+}
+
+.sheet-ability-row td:nth-child(1),
+.sheet-row-header th:nth-child(1) {
+	width: 49px;
+	border-right: 3px white solid;
+}
+
+.sheet-ability-row td:nth-child(2),
+.sheet-row-header th:nth-child(2) {
+	border-right: 3px white solid;
+	width: 50px;
+	background-color: #4a798b;	
+}
+
+.sheet-ability-row button {
+    background-color: #4a798b;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 25px;
+    padding: 5px 0px;
+    text-align: center;
+	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;
+	font-weight: normal;
+	border: none;
+}
+
+.sheet-ability-row {
+	margin-top: 2px;
+}
+
+.sheet-specialities-tr {
+	display: none;
+}
+
+.sheet-specs div {
+	position: relative;
+	z-index: 2;
+	text-align: right;
+}
+
+.sheet-options-flag + span {
+	top: 0px;
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	font-size: 20px;
+	font-family: pictos;
+	color: #A0A0A0;
+	margin-top: 0px;
+	display: none;
+	z-index: 2;
+}
+
+.sheet-options-flag {
+	 opacity: 1;    
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 18px;
+    height: 18px;
+    z-index: 3;
+}
+
+.sheet-specs:hover .sheet-options-flag + span {
+	display: inline;
+}
+
+.sheet-options-flag:checked + span {
+	color: black;
+	display: inline;
+}
+
+.sheet-hide-specs[value='on'] + .sheet-specialities-tr {
+	display: inline;
+}
+
+.sheet-destinypoints {
+	text-align:center;
+}
+
+.sheet-intriguedefense-label,
+.sheet-composure-label,
+.sheet-combatdefense-label,
+.sheet-health-label,
+.sheet-height-label,
+.sheet-weight-label,
+.sheet-eyecolor-label,
+.sheet-haircolor-label {
+	font-size: 20px;
+	text-align:center;
+}
+.sheet-col.sheet-2colrow {
+	text-align:center;
+}
+
+.sheet-2and1 {
+	display: flex;
+}
+
+.sheet-2and1 .sheet-leftcol {
+	flex: 1
+}
+.sheet-2and1 .sheet-rightcol {
+	width: 200px;
+	text-align: center;
+}
+
+.sheet-textareafullsize {
+	width: calc(100% - 10px);
+}
+
+.sheet-injuries-label,
+.sheet-wounds-label,
+.sheet-damage-label {
+	width: 125px;
+}
 
 
 

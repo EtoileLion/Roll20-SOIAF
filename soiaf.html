@@ -4,9 +4,26 @@
 <!--- Song of Ice and Fire, Game of Thrones, and all associated copyrights and trademarks belong to their respective authors. --->
 <!--- Released under MIT License for use with Roll20 --->
 <!--- External Font purchased from Blambot and is not licensed for use outside of this sheet. --->
-
+<input type='hidden' name='attr_charpage' class='sheet-charpage'>
 <div class='sheet-page1'>
-	<input name='attr_character_name'>
+	<input name='attr_character_name' class='sheet-charname'>
+			<div class='sheet-pagetogglediv'>	
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage'  type='radio' value="1" checked>
+				<span class="sheet-pfradio">H
+				</span>
+			</label>
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage' type='radio' value="2" >
+				<span class="sheet-pfradio">i
+				</span>		
+			</label>
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage' type='radio' value="3" >
+				<span class="sheet-pfradio">y
+				</span>		
+			</label>			
+		</div>
 	<div class='sheet-header'>
 		<label class='sheet-age-label sheet-mainlabel' data-i18n='age'>Age</label>
 		<input type='number' name='attr_age' min=0 value=0>
@@ -15,26 +32,39 @@
 		<label class='sheet-house-label sheet-mainlabel' data-i18n='house'>House</label>
 		<input type='text' name='attr_house' class='sheet-flexthis'>
 	</div>
-	<div class='sheet-abilities-label sheet-mainlabel' data-i18n='abilities'>Abilities</div>
+	<label class='sheet-abilities-label sheet-mainlabel' data-i18n='abilities'>Abilities</label>
 	<div class='sheet-2colrow'>
-		<div class='sheet-col'>
-			<div class='row-header'>
-				<label class='sheet-rating-label sheet-mainlabel' data-i18n='rating'>Rating</label>
-				<label class='sheet-ability-label sheet-mainlabel' data-i18n='ability'>Ability</label>
-				<label class='sheet-specialties-label sheet-mainlabel' data-i18n='specialities'>Specialities</label>
-			</div>
-			<div>
-				<input type='number' min=0 max=10 value=2 name='attr_agility_rating'>
-				<label class='sheet-agility-label' data-i18n='agility'></label>
-				<span class='sheet-agility-specs'></span>
-				<div class='sheet-specialties-div' id='sheet-agility-specs'>
-					<button>Close</button>
-					<fieldset class='repeating_agility_specialities'>
-						<input type='number' name='attr_spec_rating' min=1 value=1>
-						<input type='text' name='attr_spec_name'>
-					</fieldset>	
-				</div>
-			</div>
+		<div class='sheet-col'>			
+			<table class='sheet-abilities-table'>
+				<tr class='row-header'>
+					<th class='sheet-rating-label sheet-mainlabel' data-i18n='rating'>Rating</th>
+					<th class='sheet-ability-label sheet-mainlabel' data-i18n='ability'>Ability</th>
+					<th class='sheet-specialties-label sheet-mainlabel' data-i18n='specialities'>Specialities</th>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min=0 max=10 value=2 name='attr_agility_rating'></td>
+					<td><button class='sheet-agility-label' data-i18n='agility'></button></td>
+					<td class='sheet-specs sheet-agility-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_agility">
+						</div>
+						<span id='spanout_agility'></span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+					<input type='hidden' name='attr_hidden_agility' class='sheet-hide-specs'>
+					<div class='sheet-specialities-tr'>
+						<fieldset class='repeating_agility'>
+							<div class="sheet-flex-box">
+								<input type="number" name='attr_spec_rating' min="1" value="1">
+								<input type="text" name="attr_spec_name" class="sheet-flexthis">					
+							</div>
+						</fieldset>						
+					</div>
+					</td>
+				</tr>
+			</table>
 		</div>
 		<div class='sheet-col'>
 			<!--Right Abilities Column --->
@@ -42,10 +72,11 @@
 	</div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
-			<label class='sheet-qualities-label' data-i18n='qualities'>Qualities</label>
+			<label class='sheet-qualities-label sheet-mainlabel' data-i18n='qualities'>Qualities</label>
 			<textarea name='attr_qualities'></textarea><!-- TODO: Investigate Qualities. -->
-			<label class='sheet-destinypoints-label' data-i18n='destiny'>Destiny Points</label>
-			<div>
+			<div class='sheet-flex-box'>
+			<label class='sheet-destinypoints-label sheet-mainlabel' data-i18n='destiny'>Destiny Points</label>
+			<div class='sheet-destinypoints'>
 				<input type='checkbox' name='attr_destiny_1'>
 				<input type='checkbox' name='attr_destiny_2'>
 				<input type='checkbox' name='attr_destiny_3'>
@@ -55,45 +86,54 @@
 				<input type='checkbox' name='attr_destiny_7'>
 				<input type='checkbox' name='attr_destiny_8'>
 			</div>
+			</div>
 		</div>
 		<div class='sheet-col sheet-2colrow'>
 			<div class='sheet-col'>
-				<label class='sheet-intrigue-label' data-i18n='intrigue'>Intrigue</label>
+				<label class='sheet-intrigue-label sheet-mainlabel sheet-nopadding' data-i18n='intrigue'>Intrigue</label>
 				<label class='sheet-intriguedefense-label' data-i18n='intriguedef'>Intrigue Defense</label>
-				<input type='text' value='@{agility_rating}+@{cunning_rating}+@{status_rating}' disabled>
+				<input type='number' value='@{agility_rating}+@{cunning_rating}+@{status_rating}' disabled="true">
 				<label class='sheet-composure-label' data-i18n='composure'>Composure</label>
-				<input type='text' value='@{will_rating}*3' disabled>
+				<input type='number' value='@{will_rating}*3' disabled="true">
 			</div>
 			<div class='sheet-col'>
-				<label class='sheet-combat-label' data-i18n='combat'>Combat</label>
+				<label class='sheet-combat-label sheet-mainlabel sheet-nopadding' data-i18n='combat'>Combat</label>
 				<label class='sheet-combatdefense-label' data-i18n='combatdef'>Combat Defense</label>
-				<input type='text' value='@{agility_rating}+@{athletics_rating}+@{awareness_rating}+@{defensive_bonus}-@{armor_penalty}' disabled>
+				<input type='number' value='@{agility_rating}+@{athletics_rating}+@{awareness_rating}+@{defensive_bonus}-@{armor_penalty}' disabled="true">
 				<label class='sheet-health-label' data-i18n='health'>Health</label>
-				<input type='text' value='@{endurance_rating}*3' disabled>				
+				<input type='number' value='@{endurance_rating}*3' disabled="true">				
 			</div>
 		</div>
 	</div>
-	<div class='sheet-2and1'>
+	<div class='sheet-2and1 sheet-row sheet-flex-box'>
 		<div class='sheet-leftcol'>
-			<label class='sheet-weapons-label' data-i18n='weapons'>Weapons</label>
-			<label class='sheet-attack-label' data-i18n='attack'>Attack</label>
-			<label class='sheet-testdice-label' data-i18n='testdice'>Test Dice</label>
-			<label class='sheet-weapondamage-label' data-i18n='Weapon Damage'>Weapon Damage</label>
+			<label class='sheet-weapons-label sheet-mainlabel sheet-nopadding' data-i18n='weapons'>Weapons</label>
+			<div class='sheet-flex-box'>
+			<label class='sheet-attack-label sheet-mainlabel' data-i18n='attack'>Attack</label>
+			<label class='sheet-testdice-label sheet-mainlabel' data-i18n='testdice'>Test Dice</label>
+			<label class='sheet-weapondamage-label sheet-mainlabel' data-i18n='Weapon Damage'>Weapon Damage</label>
+			</div>
 			<fieldset class='repeating_attacks'>
 				<!-- Attacks -->
+				<div class='sheet-flex-box'>
+				<input type='text' name='attr_attack_name' class='sheet-flexthis'>
+				<input type='number' name='attr_dice'>
+				<input type='text' name='attr_attack_damage' class='sheet-flexthis'>
+				</div>
 			</fieldset>
 		</div>
 		<div class='sheet-rightcol'>
-			<label class='sheet-armor-label' data-i18n='armor'>Armor</label>
-			<textarea name='attr_armor'></textarea>
-			<label class='sheet-armorrating-label' data-i18n='armorrating'>Armor Rating</label>
-			<input type='number' min=0 name='attr_armor_rating'>
-			<label class='sheet-armorpenalty-label' data-i18n='armorpenalty'>Armor Penalty</label>
-			<input type='number' min=0 name='attr_armor_penalty'>		 
+			<label class='sheet-armor-label sheet-mainlabel sheet-nopadding' data-i18n='armor'>Armor</label>
+			<textarea name='attr_armor' class="sheet-textareafullsize"></textarea>
+			<label class='sheet-armorrating-label sheet-mainlabel  sheet-nopadding' data-i18n='armorrating'>Armor Rating</label>
+			<input type='number' min="0" name='attr_armor_rating' value="0">
+			<label class='sheet-armorpenalty-label sheet-mainlabel sheet-nopadding' data-i18n='armorpenalty'>Armor Penalty</label>
+			<input type='number' min="0" name='attr_armor_penalty' value="0">		 
 		</div>
 	</div>
-	<label class='sheet-damage-label' data-i18n='damage'>Damage</label>
-	<div>
+	<div class='sheet-flex-box'>
+	<label class='sheet-damage-label sheet-mainlabel ' data-i18n='damage'>Damage</label>
+	<div class='sheet-flexthis'>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_1'>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_2'>		   
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_3'>
@@ -116,8 +156,8 @@
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_20'>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_21'>		   
 	</div>
-	<label class='sheet-injuries-label' data-i18n='injuries'>Injuries</label>
-	<div>
+	<label class='sheet-injuries-label sheet-mainlabel' data-i18n='injuries'>Injuries</label>
+	<div class='sheet-flexthis'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_1'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_2'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_3'>			
@@ -126,61 +166,103 @@
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_6'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_7'>
 	</div>
-	<label class='sheet-wounds-label' data-i18n='wounds'>Wounds</label>
-	<div>
+	<label class='sheet-wounds-label sheet-mainlabel' data-i18n='wounds'>Wounds</label>
+	<div class='sheet-flexthis'>
 		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_1'>
+	</div>
 	</div>
 </div>
 <div class='sheet-page2'>
+			<input name='attr_character_name' class='sheet-charname'>	
+			<div class='sheet-pagetogglediv'>	
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage'  type='radio' value="1" checked>
+				<span class="sheet-pfradio">H
+				</span>
+			</label>
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage' type='radio' value="2" >
+				<span class="sheet-pfradio">i
+				</span>		
+			</label>
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage' type='radio' value="3" >
+				<span class="sheet-pfradio">y
+				</span>		
+			</label>			
+		</div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
-			<label class='sheet-equipment-label'></label>
-			<textarea name='attr_equipment'></textarea>
+			<label class='sheet-equipment-label sheet-mainlabel sheet-nopadding'>Equipment</label>
+			<textarea name='attr_equipment' class="sheet-textareafullsize"></textarea>
+			<label class='sheet-retainers-label sheet-mainlabel sheet-nopadding'>Retainers</label>
+			<textarea name='attr_retainers' class="sheet-textareafullsize"></textarea>			
 		</div>
 		<div class='sheet-col'>
-			<label class='sheet-appearance-label'></label>
+			<label class='sheet-appearance-label sheet-mainlabel sheet-nopadding'>Appearance</label>
 			<div class='sheet-2colrow'>
 				<div class='sheet-col'>
-					<label class='sheet-height-label'></label><input type='text' name='attr_height'>
-					<label class='sheet-eyecolor-label'></label><input type='text' name='attr_eye_color'>		
+					<label class='sheet-height-label sheet-nopadding'>Height</label><input type='text' name='attr_height'>
+					<label class='sheet-eyecolor-label sheet-nopadding'>Eye Color</label><input type='text' name='attr_eye_color'>		
 				</div>
 				<div class='sheet-col'>
-					<label class='sheet-weight-label'></label><input type='text' name='attr_weight'>
-					<label class='sheet-haircolor-label'></label><input type='text' name='attr_hair_color'>		
+					<label class='sheet-weight-label sheet-nopadding'>Weight</label><input type='text' name='attr_weight'>
+					<label class='sheet-haircolor-label sheet-nopadding'>Hair Color</label><input type='text' name='attr_hair_color'>		
 				</div>
 			</div>
-			<label class='sheet-mannerisms-label'></label>
-			<textarea name='attr_mannerisms'></textarea>
-			<label class='sheet-features-label'></label>
-			<textarea name='attr_features'></textarea>
-			<label class='sheet-retainers-label'></label>
-			<textarea name='attr_retainers'></textarea>
+			<label class='sheet-mannerisms-label sheet-mainlabel sheet-nopadding'>Mannerisms</label>
+			<textarea name='attr_mannerisms' class="sheet-textareafullsize"></textarea>
+			<label class='sheet-features-label sheet-mainlabel sheet-nopadding'>Features</label>
+			<textarea name='attr_features' class="sheet-textareafullsize"></textarea>
 		</div>		
 	</div>
-	<label class='sheet-personalhistory-label'></label>
-	<textarea name='attr_personal_history'></textarea>
+	<label class='sheet-personalhistory-label sheet-mainlabel sheet-nopadding'>Personal History</label>
+	<textarea name='attr_personal_history' class="sheet-textareafullsize"></textarea>
 	<div class='sheet-3colrow'>
 		<div class='sheet-col'>
-			<label class='sheet-allies-label'></label>
-			<textarea name='attr_allies'></textarea>
-			<label class='sheet-heraldry-label'></label>
-			<textarea name='attr_heraldry'></textarea>
+			<label class='sheet-allies-label sheet-mainlabel sheet-nopadding'>Allies</label>
+			<textarea name='attr_allies' class="sheet-textareafullsize"></textarea>
+			<label class='sheet-heraldry-label sheet-mainlabel sheet-nopadding'>Heraldry</label>
+			<textarea name='attr_heraldry' class="sheet-textareafullsize"></textarea>
 		</div>
 		<div class='sheet-col'>
-			<label class='sheet-enemies-label'></label>
-			<textarea name='attr_enemies'></textarea>
-			<label class='sheet-portrait-label'></label>
-			<textarea name='attr_portrait'></textarea>		
+			<label class='sheet-enemies-label sheet-mainlabel sheet-nopadding'>Enemies</label>
+			<textarea name='attr_enemies' class="sheet-textareafullsize"></textarea>
+			<label class='sheet-portrait-label sheet-mainlabel sheet-nopadding'>Portrait</label>
+			<textarea name='attr_portrait' class="sheet-textareafullsize"></textarea>		
 		</div>
 		<div class='sheet-col'>
-			<label class='sheet-oaths-label'></label>
-			<textarea name='attr_oaths'></textarea>
-			<label class='sheet-motto-label'></label>
-			<textarea name='attr_motto'></textarea>		
+			<label class='sheet-oaths-label sheet-mainlabel sheet-nopadding'>Oaths</label>
+			<textarea name='attr_oaths' class="sheet-textareafullsize"></textarea>
+			<label class='sheet-motto-label sheet-mainlabel sheet-nopadding'>Motto</label>
+			<textarea name='attr_motto' class="sheet-textareafullsize"></textarea>		
 		</div>		
 	</div>
 </div>
 <div class='sheet-page3'>
+	<input name='attr_character_name' class='sheet-charname'>
+			<div class='sheet-pagetogglediv'>	
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage'  type='radio' value="1" checked>
+				<span class="sheet-pfradio">H
+				</span>
+			</label>
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage' type='radio' value="2" >
+				<span class="sheet-pfradio">i
+				</span>		
+			</label>
+			<label class='sheet-pfcontainer'>
+				<input name='attr_charpage' type='radio' value="3" >
+				<span class="sheet-pfradio">y
+				</span>		
+			</label>			
+		</div>
+		<div class='sheet-row'>
+		<label class='sheet-mainlabel sheet-nopadding'>Notes</label>
+		<textarea name='attr_notes' class="sheet-textareafullsize"></textarea>
+		(More to come here...)
+		</div>
 </div>
 
 <rolltemplate class="sheet-rolltemplate-cinac">
@@ -195,3 +277,29 @@
 		<tr><th>Vice</th><td>{{vice}}</td></tr>
 	</table>
 </rolltemplate>
+
+<script type='text/worker'>
+	"use strict";
+	
+	on("change:repeating_agility", function(eventInfo) {
+		let out = "";
+		let changedgroup = eventInfo.sourceAttribute.split("_")[1];
+		console.log("DEBUG: "+changedgroup);
+		getSectionIDs("repeating_"+changedgroup,function(idarray) {
+			console.log(idarray);
+			idarray = idarray.map(function(x) { return "repeating_"+changedgroup+x; });
+			let idarray2 = [...idarray];
+			idarray = idarray.map(function(x) { return x+"_spec_name"; });
+			idarray2 = idarray2.map(function(x) { return x+"_spec_rating"; });
+			console.log([...idarray,...idarray2]);
+			getAttrs([...idarray,...idarray2], function(values) {
+				console.log(values);
+				idarray2.forEach(function(id) {
+				out += "<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{[[(@{"+changedgroup+"_rating}+"+values["repeating_"+changedgroup+id+"_spec_rating"]+")d6dl"+values["repeating_"+changedgroup+id+"_spec_rating"]+"]]}}'>"+values["repeating_"+changedgroup+id+"_spec_name"]+": "+values["repeating_"+changedgroup+id+"_spec_rating"]+"B</button>";
+				});
+				console.log(out);
+				$("#spanout_"+changedgroup).html(out);
+			});			
+		});
+	});
+</script>
