@@ -48,7 +48,18 @@
 					    <div>
 							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_agility">
 						</div>
-						<span id='spanout_agility'></span>
+						<span id='spanout_agility'>
+							<input type='hidden' name='attr_acrobatics_rating'>
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Acrobatics}} {{result=[[(@{agility_rating}+@{acrobatics_rating})d6dl@{acrobatics_rating}]]}}'>Acrobatics <span name='attr_acrobatics_rating'></span>B</button>
+							<input type='hidden' name='attr_balance_rating'>
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Balance}} {{result=[[(@{agility_rating}+@{balance_rating})d6dl@{balance_rating}]]}}'>Balance <span name='attr_balance_rating'></span>B</button>
+							<input type='hidden' name='attr_contortions_rating'>
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Contortions}} {{result=[[(@{agility_rating}+@{contortions_rating})d6dl@{contortions_rating}]]}}'>Contortions <span name='attr_contortions_rating'></span>B</button>
+							<input type='hidden' name='attr_dodge_rating'>
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Dodge}} {{result=[[(@{agility_rating}+@{dodge_rating})d6dl@{dodge_rating}]]}}'>Dodge <span name='attr_dodge_rating'></span>B</button>
+							<input type='hidden' name='attr_quickness_rating'>
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Quickness}} {{result=[[(@{agility_rating}+@{quickness_rating})d6dl@{quickness_rating}]]}}'>Quickness <span name='attr_quickness_rating'></span>B</button>							
+						</span>
 					</td>								
 				</tr>								
 				<tr>
@@ -58,7 +69,13 @@
 						<fieldset class='repeating_agility'>
 							<div class="sheet-flex-box">
 								<input type="number" name='attr_spec_rating' min="1" value="1">
-								<input type="text" name="attr_spec_name" class="sheet-flexthis">					
+								<select name="attr_spec_name" class="sheet-flexthis">
+									<option value='acrobatics'>Acrobatics</option>
+									<option value='balance'>Balance</option>
+									<option value='contortions'>Contortions</option>
+									<option value='dodge'>Dodge</option>
+									<option value='quickness'>Quickness</option>
+								</select>					
 							</div>
 						</fieldset>						
 					</div>
@@ -128,12 +145,11 @@
 			<label class='sheet-armorrating-label sheet-mainlabel  sheet-nopadding' data-i18n='armorrating'>Armor Rating</label>
 			<input type='number' min="0" name='attr_armor_rating' value="0">
 			<label class='sheet-armorpenalty-label sheet-mainlabel sheet-nopadding' data-i18n='armorpenalty'>Armor Penalty</label>
-			<input type='number' min="0" name='attr_armor_penalty' value="0">		 
-		</div>
+			</div>
 	</div>
 	<div class='sheet-flex-box'>
 	<label class='sheet-damage-label sheet-mainlabel ' data-i18n='damage'>Damage</label>
-	<div class='sheet-flexthis'>
+	<div class='sheet-flexthis'><!--TODO : Health = END * 3 -->
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_1'>
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_2'>		   
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_3'>
@@ -157,7 +173,7 @@
 		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_21'>		   
 	</div>
 	<label class='sheet-injuries-label sheet-mainlabel' data-i18n='injuries'>Injuries</label>
-	<div class='sheet-flexthis'>
+	<div class='sheet-flexthis'><!--TODO: Injuries = END -->
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_1'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_2'>
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_3'>			
@@ -167,8 +183,14 @@
 		<input type='checkbox' class='sheet-injurybox' name='attr_injury_7'>
 	</div>
 	<label class='sheet-wounds-label sheet-mainlabel' data-i18n='wounds'>Wounds</label>
-	<div class='sheet-flexthis'>
+	<div class='sheet-flexthis'><!--TODO: Wounds = END -->
 		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_1'>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_2'>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_3'>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_4'>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_5'>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_6'>
+		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_7'>		
 	</div>
 	</div>
 </div>
@@ -282,7 +304,7 @@
 	"use strict";
 	
 	on("change:repeating_agility", function(eventInfo) {
-		let out = "";
+		let out = {};
 		let changedgroup = eventInfo.sourceAttribute.split("_")[1];
 		console.log("DEBUG: "+changedgroup);
 		getSectionIDs("repeating_"+changedgroup,function(idarray) {
@@ -295,10 +317,10 @@
 			getAttrs([...idarray,...idarray2], function(values) {
 				console.log(values);
 				idarray2.forEach(function(id) {
-				out += "<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{[[(@{"+changedgroup+"_rating}+"+values["repeating_"+changedgroup+id+"_spec_rating"]+")d6dl"+values["repeating_"+changedgroup+id+"_spec_rating"]+"]]}}'>"+values["repeating_"+changedgroup+id+"_spec_name"]+": "+values["repeating_"+changedgroup+id+"_spec_rating"]+"B</button>";
+					out[values["repeating_"+changedgroup+id+"_spec_name"]+"_rating"] = values["repeating_"+changedgroup+id+"_spec_rating"];
 				});
 				console.log(out);
-				$("#spanout_"+changedgroup).html(out);
+				setAttrs(out);
 			});			
 		});
 	});
