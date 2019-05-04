@@ -381,6 +381,7 @@ tr:not(:first-child) {
 
 .sheet-rolltemplate-iafroll .inlinerollresult.importantroll {
 	border: none;	
+	color:#4a57ED;	
 }
 
 /* Attack Styling */
@@ -455,6 +456,7 @@ tr:not(:first-child) {
 }
 
 .sheet-rolltemplate-iafattack .inlinerollresult.importantroll {
-	border: none;	
+	border: none;
+	color:#4a57ED;
 }
 
