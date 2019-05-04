@@ -1125,7 +1125,7 @@
 		"will":["courage","coordinate","dedication"]
 	}
 	
-	on("change:repeating_agility change:repeating_animalhandling change:repeating_athletics change:repeating_awareness change:repeating_cunning change:repeating_deception change:repeating_endurance change:repeating_fighting change:repeating_healing change:repeating_knowledge change:repeating_marksmanship change:repeating_persuasion change:repeating_status change:repeating_stealth change:repeating_survival change:repeating_thievery change:repeating_warfare change:repeating_will", function(eventInfo) {		
+	on("change:repeating_agility change:repeating_animalhandling change:repeating_athletics change:repeating_awareness change:repeating_cunning change:repeating_deception change:repeating_endurance change:repeating_fighting change:repeating_healing change:repeating_knowledge change:repeating_marksmanship change:repeating_persuasion change:repeating_insight change:repeating_status change:repeating_stealth change:repeating_survival change:repeating_thievery change:repeating_warfare change:repeating_will", function(eventInfo) {		
 		let changedgroup = eventInfo.sourceAttribute.split("_")[1];
 		let out = {};
 		specs[changedgroup].forEach(function (x) { out[x+"_rating"] = 0; });
