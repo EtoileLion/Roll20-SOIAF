@@ -379,6 +379,9 @@ tr:not(:first-child) {
 	border: none;
 }
 
+.sheet-rolltemplate-iafroll .inlinerollresult.importantroll {
+	border: none;	
+}
 
 /* Attack Styling */
 .sheet-rolltemplate-iafattack table {
@@ -449,5 +452,9 @@ tr:not(:first-child) {
 .sheet-rolltemplate-iafattack .inlinerollresult.fullfail {
 	color: #B31515;
 	border: none;
+}
+
+.sheet-rolltemplate-iafattack .inlinerollresult.importantroll {
+	border: none;	
 }
 
