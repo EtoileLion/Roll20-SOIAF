@@ -20,6 +20,10 @@
 	vertical-align: center;
 }
 
+.sheet-center {
+	text-align: center;
+}
+
 .sheet-nopadding {
 	padding: 5px 0px;
 }
@@ -137,6 +141,14 @@ label {
 	padding: 5px 0px;
 }
 
+.sheet-spec-button {
+	display: none;
+}
+
+.sheet-specs > span input:not([value="0"]) + button {
+	display: inline;
+}
+
 tr:not(:first-child) {
 	border-top: 2px white solid;
 }
@@ -148,17 +160,24 @@ tr:not(:first-child) {
 .sheet-ability-row td:nth-child(1),
 .sheet-row-header th:nth-child(1) {
 	width: 49px;
-	border-right: 3px white solid;
 }
-
 .sheet-ability-row td:nth-child(2),
 .sheet-row-header th:nth-child(2) {
+	padding:0px;
+	border-right: 3px white solid;
+	width: 10px;	
+}
+
+.sheet-ability-row td:nth-child(3),
+.sheet-row-header th:nth-child(3) {
 	border-right: 3px white solid;
 	width: 50px;
 	background-color: #4a798b;	
 }
 
+.sheet-language-label,
 .sheet-ability-row button {
+	background-image: none;
     background-color: #4a798b;
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -168,6 +187,14 @@ tr:not(:first-child) {
 	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;
 	font-weight: normal;
 	border: none;
+}
+
+.sheet-attackselect {
+	width: auto;
+}
+
+.sheet-attacktext {
+	width: 120px;
 }
 
 .sheet-ability-row {
@@ -261,8 +288,16 @@ tr:not(:first-child) {
 	width: 125px;
 }
 
+.sheet-height-label + input,
+.sheet-weight-label + input,
+.sheet-eyecolor-label + input,
+.sheet-haircolor-label + input {
+	width: auto;
+}
 
-
+.sheet-hidecheck[value="1"] + input {
+	display: none;
+}
 
 /* Ice */
 .sheet-styler[value='ice'] ~ .sheet-page .sheet-mainlabel {
@@ -287,4 +322,117 @@ tr:not(:first-child) {
 }
 .sheet-rolltemplate-cinac tr:first-child {
     background-color:#CCE;
+}
+
+/* Stat Roll Styling */
+.sheet-rolltemplate-iafroll table {
+	width: 100%;
+}
+.sheet-rolltemplate-iafroll th {
+	background-image: none;
+    background-color: #4a798b;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 25px;
+    padding: 5px 0px;
+    text-align: center;
+	font-family: "GOTDeco", "Bookman", "Times New Roman", Times, serif;
+	font-weight: normal;
+	border: none;
+}
+
+.sheet-rolltemplate-iafroll td {
+	text-align: center;
+	background-color: #EEE;
+	height: 50px;	
+}
+
+.sheet-rolltemplate-iafroll .inlinerollresult {
+	background-color: transparent;
+	font-size: 40px;
+	color: white;
+	border: none;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;	
+	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;	
+}
+
+.sheet-rolltemplate-iafroll .inlinerollresult.fullcrit {
+	color: #3fB315;
+	border: none;	
+}
+
+.sheet-rolltemplate-iafroll .inlinerollresult.fullfail {
+	color: #B31515;
+	border: none;
+}
+
+
+/* Attack Styling */
+.sheet-rolltemplate-iafattack table {
+	width: 100%;
+}
+.sheet-rolltemplate-iafattack th {
+	background-image: none;
+    background-color: #4a798b;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 25px;
+    padding: 5px 0px;
+    text-align: center;
+	font-family: "GOTDeco", "Bookman", "Times New Roman", Times, serif;
+	font-weight: normal;
+	border: none;
+}
+
+.sheet-rolltemplate-iafattack tr:nth-child(2) td {
+	text-align: center;
+	background-color: #EEE;
+	font-size: x-small;
+	font-style: italic;
+}
+.sheet-rolltemplate-iafattack tr:nth-child(3) td {
+	text-align: center;
+	background-color: #EEE;
+	font-size: x-small;
+	font-style: italic;
+}
+
+.sheet-rolltemplate-iafattack tr:nth-child(4) td {
+	text-align: center;
+	background-color: #EEE;
+	height: 50px;	
+	font-size: 40px;	
+}
+
+.sheet-rolltemplate-iafattack tr:nth-child(5) td {
+	text-align: center;
+	background-color: #EEE;
+	height: 50px;	
+	display:flex;
+	align-items:center;
+}
+.sheet-rolltemplate-iafattack tr:nth-child(5) td span {
+		font-size: xx-large;
+}
+
+.sheet-rolltemplate-iafattack .sheet-flexthis {
+		flex: 1;
+}
+
+.sheet-rolltemplate-iafattack .inlinerollresult {
+	background-color: transparent;
+	color: white;
+	border: none;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;	
+	font-family: "GOT", "Bookman", "Times New Roman", Times, serif;	
+}
+
+.sheet-rolltemplate-iafattack .inlinerollresult.fullcrit {
+	color: #3fB315;
+	border: none;	
+}
+
+.sheet-rolltemplate-iafattack .inlinerollresult.fullfail {
+	color: #B31515;
+	border: none;
 }

@@ -1,29 +1,29 @@
 <!--- Project Valyrian --->
-<!--- Version 0.1 Beta --->
+<!--- Version 1.0 Beta --->
 <!--- By EtoileLion --->
 <!--- Song of Ice and Fire, Game of Thrones, and all associated copyrights and trademarks belong to their respective authors. --->
 <!--- Released under MIT License for use with Roll20 --->
 <!--- External Font purchased from Blambot and is not licensed for use outside of this sheet. --->
-<input type='hidden' name='attr_charpage' class='sheet-charpage'>
+<input type='hidden' name='attr_charpage' class='sheet-charpage' value="1">
 <div class='sheet-page1'>
 	<input name='attr_character_name' class='sheet-charname'>
-			<div class='sheet-pagetogglediv'>	
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage'  type='radio' value="1" checked>
-				<span class="sheet-pfradio">H
-				</span>
-			</label>
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage' type='radio' value="2" >
-				<span class="sheet-pfradio">i
-				</span>		
-			</label>
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage' type='radio' value="3" >
-				<span class="sheet-pfradio">y
-				</span>		
-			</label>			
-		</div>
+	<div class='sheet-pagetogglediv'>	
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage'  type='radio' value="1" checked>
+			<span class="sheet-pfradio">H
+			</span>
+		</label>
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage' type='radio' value="2" >
+			<span class="sheet-pfradio">i
+			</span>		
+		</label>
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage' type='radio' value="3" >
+			<span class="sheet-pfradio">y
+			</span>		
+		</label>			
+	</div>
 	<div class='sheet-header'>
 		<label class='sheet-age-label sheet-mainlabel' data-i18n='age'>Age</label>
 		<input type='number' name='attr_age' min=0 value=0>
@@ -38,87 +38,761 @@
 			<table class='sheet-abilities-table'>
 				<tr class='row-header'>
 					<th class='sheet-rating-label sheet-mainlabel' data-i18n='rating'>Rating</th>
+					<th class='sheet-rating-label sheet-mainlabel'>PR</th>
 					<th class='sheet-ability-label sheet-mainlabel' data-i18n='ability'>Ability</th>
 					<th class='sheet-specialties-label sheet-mainlabel' data-i18n='specialities'>Specialities</th>
 				</tr>
 				<tr class='sheet-ability-row'>
-					<td><input type='number' min=0 max=10 value=2 name='attr_agility_rating'></td>
-					<td><button class='sheet-agility-label' data-i18n='agility'></button></td>
+					<td><input type='number' min="0" max="10" value="2" name='attr_agility_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_agility'>8</span></td>
+					<td><button class='sheet-agility-label' data-i18n='agility' type='roll' value='&{template:iafroll} {{type=Agility}} {{result=[[[[@{agility_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
 					<td class='sheet-specs sheet-agility-specs'>
 					    <div>
 							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_agility">
 						</div>
 						<span id='spanout_agility'>
-							<input type='hidden' name='attr_acrobatics_rating'>
-							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Acrobatics}} {{result=[[(@{agility_rating}+@{acrobatics_rating})d6dl@{acrobatics_rating}]]}}'>Acrobatics <span name='attr_acrobatics_rating'></span>B</button>
-							<input type='hidden' name='attr_balance_rating'>
-							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Balance}} {{result=[[(@{agility_rating}+@{balance_rating})d6dl@{balance_rating}]]}}'>Balance <span name='attr_balance_rating'></span>B</button>
-							<input type='hidden' name='attr_contortions_rating'>
-							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Contortions}} {{result=[[(@{agility_rating}+@{contortions_rating})d6dl@{contortions_rating}]]}}'>Contortions <span name='attr_contortions_rating'></span>B</button>
-							<input type='hidden' name='attr_dodge_rating'>
-							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Dodge}} {{result=[[(@{agility_rating}+@{dodge_rating})d6dl@{dodge_rating}]]}}'>Dodge <span name='attr_dodge_rating'></span>B</button>
-							<input type='hidden' name='attr_quickness_rating'>
-							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Quickness}} {{result=[[(@{agility_rating}+@{quickness_rating})d6dl@{quickness_rating}]]}}'>Quickness <span name='attr_quickness_rating'></span>B</button>							
+							<input type='hidden' name='attr_acrobatics_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Acrobatics}} {{result=[[[[@{agility_rating}+@{acrobatics_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{acrobatics_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Acrobatics <span name='attr_acrobatics_rating'></span>B</button>
+							<input type='hidden' name='attr_balance_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Balance}} {{result=[[[[@{agility_rating}+@{balance_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{balance_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Balance <span name='attr_balance_rating'></span>B</button>
+							<input type='hidden' name='attr_contortions_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Contortions}} {{result=[[[[@{agility_rating}+@{contortions_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{contortions_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Contortions <span name='attr_contortions_rating'></span>B</button>
+							<input type='hidden' name='attr_dodge_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Dodge}} {{result=[[[[@{agility_rating}+@{dodge_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{dodge_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Dodge <span name='attr_dodge_rating'></span>B</button>
+							<input type='hidden' name='attr_quickness_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Agility+Quickness}} {{result=[[[[@{agility_rating}+@{quickness_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{quickness_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Quickness <span name='attr_quickness_rating'></span>B</button>							
 						</span>
 					</td>								
 				</tr>								
 				<tr>
 					<td class='sheet-specialities-td' colspan='3'>
-					<input type='hidden' name='attr_hidden_agility' class='sheet-hide-specs'>
-					<div class='sheet-specialities-tr'>
-						<fieldset class='repeating_agility'>
-							<div class="sheet-flex-box">
-								<input type="number" name='attr_spec_rating' min="1" value="1">
-								<select name="attr_spec_name" class="sheet-flexthis">
-									<option value='acrobatics'>Acrobatics</option>
-									<option value='balance'>Balance</option>
-									<option value='contortions'>Contortions</option>
-									<option value='dodge'>Dodge</option>
-									<option value='quickness'>Quickness</option>
-								</select>					
-							</div>
-						</fieldset>						
-					</div>
+						<input type='hidden' name='attr_hidden_agility' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_agility'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='acrobatics'>Acrobatics</option>
+										<option value='balance'>Balance</option>
+										<option value='contortions'>Contortions</option>
+										<option value='dodge'>Dodge</option>
+										<option value='quickness'>Quickness</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
 					</td>
 				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_animalhandling_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_animalhandling'>8</span></td>
+					<td><button class='sheet-animalhandling-label' data-i18n='animalhandling' type='roll' value='&{template:iafroll} {{type=Animal Handling}} {{result=[[[[@{animalhandling_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-animalhandling-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_animalhandling">
+						</div>
+						<span id='spanout_animalhandling'>
+							<input type='hidden' name='attr_charmah_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Animal Handlng+Charm}} {{result=[[[[@{animalhandling_rating}+@{charmah_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{charmah_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Charm <span name='attr_charmah_rating'></span>B</button>
+							<input type='hidden' name='attr_drive_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Animal Handling+Drive}} {{result=[[[[@{animalhandling_rating}+@{drive_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{drive_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Drive <span name='attr_drive_rating'></span>B</button>
+							<input type='hidden' name='attr_ride_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Animal Handling+Ride}} {{result=[[[[@{animalhandling_rating}+@{ride_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{ride_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Ride <span name='attr_ride_rating'></span>B</button>
+							<input type='hidden' name='attr_train_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Animal Handling+Train}} {{result=[[[[@{animalhandling_rating}+@{train_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{train_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Train <span name='attr_train_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_animalhandling' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_animalhandling'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='charmah'>Charm</option>
+										<option value='drive'>Drive</option>
+										<option value='ride'>Ride</option>
+										<option value='train'>Train</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_athletics_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_athletics'>8</span></td>
+					<td><button class='sheet-athletics-label' data-i18n='athletics' type='roll' value='&{template:iafroll} {{type=Athletics}} {{result=[[[[@{athletics_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-athletics-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_athletics">
+						</div>
+						<span id='spanout_athletics'>
+							<input type='hidden' name='attr_climb_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Athletics+Climb}} {{result=[[[[@{athletics_rating}+@{climb_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{climb_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Climb <span name='attr_climb_rating'></span>B</button>
+							<input type='hidden' name='attr_jump_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Athletics+Jump}} {{result=[[[[@{athletics_rating}+@{jump_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{jump_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Jump <span name='attr_jump_rating'></span>B</button>
+							<input type='hidden' name='attr_run_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Athletics+Run}} {{result=[[[[@{athletics_rating}+@{run_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{run_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Run <span name='attr_run_rating'></span>B</button>
+							<input type='hidden' name='attr_strength_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Athletics+Strength}} {{result=[[[[@{athletics_rating}+@{strength_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{strength_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Strength <span name='attr_strength_rating'></span>B</button>
+							<input type='hidden' name='attr_swim_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Athletics+Swim}} {{result=[[[[@{athletics_rating}+@{swim_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{swim_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Swim <span name='attr_swim_rating'></span>B</button>							
+							<input type='hidden' name='attr_throw_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Athletics+Throw}} {{result=[[[[@{athletics_rating}+@{throw_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{throw_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Throw <span name='attr_throw_rating'></span>B</button>							
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_athletics' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_athletics'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='climb'>Climb</option>
+										<option value='jump'>Jump</option>
+										<option value='run'>Run</option>
+										<option value='strength'>Strength</option>
+										<option value='swim'>Swim</option>
+										<option value='throw'>Throw</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>				
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_awareness_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_awareness'>8</span></td>
+					<td><button class='sheet-awareness-label' data-i18n='awareness' type='roll' value='&{template:iafroll} {{type=Awareness}} {{result=[[[[@{awareness_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-awareness-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_awareness">
+						</div>
+						<span id='spanout_awareness'>
+							<input type='hidden' name='attr_empathy_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Awareness+Empathy}} {{result=[[[[@{awareness_rating}+@{empathy_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{empathy_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Empathy <span name='attr_empathy_rating'></span>B</button>
+							<input type='hidden' name='attr_notice_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Awareness+Notice}} {{result=[[[[@{awareness_rating}+@{notice_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{notice_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Notice <span name='attr_notice_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_awareness' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_awareness'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='empathy'>Empathy</option>
+										<option value='notice'>Notice</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>	
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_cunning_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_cunning'>8</span></td>
+					<td><button class='sheet-cunning-label' data-i18n='cunning' type='roll' value='&{template:iafroll} {{type=Cunning}} {{result=[[[[@{cunning_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-cunning-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_cunning">
+						</div>
+						<span id='spanout_cunning'>
+							<input type='hidden' name='attr_decipher_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Cunning+Decipher}} {{result=[[[[@{cunning_rating}+@{decipher_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{decipher_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Decipher <span name='attr_decipher_rating'></span>B</button>
+							<input type='hidden' name='attr_logic_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Cunning+Logic}} {{result=[[[[@{cunning_rating}+@{logic_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{logic_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Logic <span name='attr_logic_rating'></span>B</button>
+							<input type='hidden' name='attr_memory_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Cunning+Memory}} {{result=[[[[@{cunning_rating}+@{memory_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{memory_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Memory <span name='attr_memory_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_cunning' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_cunning'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='decipher'>Decipher</option>
+										<option value='logic'>Logic</option>
+										<option value='memory'>Memory</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>						
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_deception_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_deception'>8</span></td>
+					<td><button class='sheet-deception-label' data-i18n='deception' type='roll' value='&{template:iafroll} {{type=Deception}} {{result=[[[[@{deception_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-deception-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_deception">
+						</div>
+						<span id='spanout_deception'>
+							<input type='hidden' name='attr_act_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Deception+Act}} {{result=[[[[@{deception_rating}+@{act_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{act_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Act <span name='attr_act_rating'></span>B</button>
+							<input type='hidden' name='attr_bluff_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Deception+Bluff}} {{result=[[[[@{deception_rating}+@{bluff_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{bluff_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Bluff <span name='attr_bluff_rating'></span>B</button>
+							<input type='hidden' name='attr_cheat_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Deception+Cheat}} {{result=[[[[@{deception_rating}+@{cheat_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{cheat_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Cheat <span name='attr_cheat_rating'></span>B</button>
+							<input type='hidden' name='attr_disguise_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Deception+Disguise}} {{result=[[[[@{deception_rating}+@{disguise_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{disguise_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Disguise <span name='attr_disguise_rating'></span>B</button>			
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_deception' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_deception'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='act'>Act</option>
+										<option value='bluff'>Bluff</option>
+										<option value='cheat'>Cheat</option>
+										<option value='disguise'>Disguise</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>		
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_endurance_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_endurance'>8</span></td>
+					<td><button class='sheet-endurance-label' data-i18n='endurance' type='roll' value='&{template:iafroll} {{type=Endurance}} {{result=[[[[@{endurance_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-endurance-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_endurance">
+						</div>
+						<span id='spanout_endurance'>
+							<input type='hidden' name='attr_resilience_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Endurance+Resilience}} {{result=[[[[@{endurance_rating}+@{resilience_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{resilience_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Resilience <span name='attr_resilience_rating'></span>B</button>
+							<input type='hidden' name='attr_stamina_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Endurance+Stamina}} {{result=[[[[@{endurance_rating}+@{stamina_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{stamina_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Stamina <span name='attr_stamina_rating'></span>B</button>					
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_endurance' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_endurance'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='resilience'>Resilience</option>
+										<option value='stamina'>Stamina</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>		
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_fighting_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_fighting'>8</span></td>
+					<td><button class='sheet-fighting-label' data-i18n='fighting' type='roll' value='&{template:iafroll} {{type=Fighting}} {{result=[[[[@{fighting_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-fighting-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_fighting">
+						</div>
+						<span id='spanout_fighting'>
+							<input type='hidden' name='attr_axes_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Axes}} {{result=[[[[@{fighting_rating}+@{axes_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{axes_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Axes <span name='attr_axes_rating'></span>B</button>
+							<input type='hidden' name='attr_bludgeons_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Bludgeons}} {{result=[[[[@{fighting_rating}+@{bludgeons_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{bludgeons_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Bludgeons <span name='attr_bludgeons_rating'></span>B</button>
+							<input type='hidden' name='attr_brawling_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Brawling}} {{result=[[[[@{fighting_rating}+@{brawling_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{brawling_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Brawling <span name='attr_brawling_rating'></span>B</button>
+							<input type='hidden' name='attr_fencing_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Fencing}} {{result=[[[[@{fighting_rating}+@{fencing_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{fencing_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Fencing <span name='attr_fencing_rating'></span>B</button>
+							<input type='hidden' name='attr_longblades_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Long Blades}} {{result=[[[[@{fighting_rating}+@{longblades_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{longblades_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Long Blades <span name='attr_longblades_rating'></span>B</button>							
+							<input type='hidden' name='attr_polearms_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Pole-Arms}} {{result=[[[[@{fighting_rating}+@{polearms_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{polearms_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Pole-Arms <span name='attr_polearms_rating'></span>B</button>							
+							<input type='hidden' name='attr_shields_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Shields}} {{result=[[[[@{fighting_rating}+@{shields_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{shields_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Shields <span name='attr_shields_rating'></span>B</button>
+							<input type='hidden' name='attr_shortblades_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Short Blades}} {{result=[[[[@{fighting_rating}+@{shortblades_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{shortblades_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Short Blades <span name='attr_shortblades_rating'></span>B</button>							
+							<input type='hidden' name='attr_spears_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Fighting+Spears}} {{result=[[[[@{fighting_rating}+@{spears_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{spears_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Spears <span name='attr_spears_rating'></span>B</button>							
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_fighting' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_fighting'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='axes'>Axes</option>
+										<option value='bludgeons'>Bludgeons</option>
+										<option value='brawling'>Brawling</option>
+										<option value='fencing'>Fencing</option>
+										<option value='longblades'>Long Blades</option>
+										<option value='polearms'>Pole-Arms</option>
+										<option value='shields'>Shields</option>
+										<option value='shortblades'>Short Blades</option>
+										<option value='spears'>Spears</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_healing_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_healing'>8</span></td>
+					<td><button class='sheet-healing-label' data-i18n='healing' type='roll' value='&{template:iafroll} {{type=Healing}} {{result=[[[[@{healing_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-healing-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_healing">
+						</div>
+						<span id='spanout_healing'>
+							<input type='hidden' name='attr_diagnose_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Healing+Diagnose}} {{result=[[[[@{healing_rating}+@{diagnose_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{diagnose_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Diagnose <span name='attr_diagnose_rating'></span>B</button>
+							<input type='hidden' name='attr_treatailment_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Healing+Treat Ailment}} {{result=[[[[@{healing_rating}+@{treatailment_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{treatailment_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Treat Ailment <span name='attr_treatailment_rating'></span>B</button>
+							<input type='hidden' name='attr_treatinjury_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Healing+Treat Injury}} {{result=[[[[@{healing_rating}+@{treatinjury_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{treatinjury_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Treat Injury <span name='attr_treatinjury_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_healing' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_healing'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='diagnose'>Diagnose</option>
+										<option value='treatailment'>Treat Ailment</option>
+										<option value='treatinjury'>Treat Injury</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>		
 			</table>
 		</div>
 		<div class='sheet-col'>
 			<!--Right Abilities Column --->
+			<table class='sheet-abilities-table'>
+				<tr class='row-header'>
+					<th class='sheet-rating-label sheet-mainlabel' data-i18n='rating'>Rating</th>
+					<th class='sheet-rating-label sheet-mainlabel'>PR</th>
+					<th class='sheet-ability-label sheet-mainlabel' data-i18n='ability'>Ability</th>
+					<th class='sheet-specialties-label sheet-mainlabel' data-i18n='specialities'>Specialities</th>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_knowledge_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_knowledge'>8</span></td>
+					<td><button class='sheet-knowledge-label' data-i18n='knowledge' type='roll' value='&{template:iafroll} {{type=Knowledge}} {{result=[[[[@{knowledge_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-knowledge-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_knowledge">
+						</div>
+						<span id='spanout_knowledge'>
+							<input type='hidden' name='attr_education_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Knowledge+Education}} {{result=[[[[@{knowledge_rating}+@{education_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{education_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Education <span name='attr_education_rating'></span>B</button>
+							<input type='hidden' name='attr_research_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Knowledge+Research}} {{result=[[[[@{knowledge_rating}+@{research_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{research_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Research <span name='attr_research_rating'></span>B</button>
+							<input type='hidden' name='attr_streetwise_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Knowledge+Streetwise}} {{result=[[[[@{knowledge_rating}+@{streetwise_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{streetwise_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Streetwise <span name='attr_streetwise_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_knowledge' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_knowledge'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='education'>Education</option>
+										<option value='research'>Research</option>
+										<option value='streetwise'>Streetwise</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_marksmanship_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_marksmanship'>8</span></td>
+					<td><button class='sheet-marksmanship-label' data-i18n='marksmanship' type='roll' value='&{template:iafroll} {{type=Marksmanship}} {{result=[[[[@{marksmanship_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-marksmanship-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_marksmanship">
+						</div>
+						<span id='spanout_marksmanship'>
+							<input type='hidden' name='attr_bows_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Marksmanship+Bows}} {{result=[[[[@{marksmanship_rating}+@{bows_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{bows_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Bows <span name='attr_bows_rating'></span>B</button>
+							<input type='hidden' name='attr_crossbows_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Marksmanship+Crossbows}} {{result=[[[[@{marksmanship_rating}+@{crossbows_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{crossbows_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Crossbows <span name='attr_crossbows_rating'></span>B</button>
+							<input type='hidden' name='attr_siege_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Marksmanship+Siege}} {{result=[[[[@{marksmanship_rating}+@{siege_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{siege_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Siege <span name='attr_siege_rating'></span>B</button>
+							<input type='hidden' name='attr_thrown_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Marksmanship+Thrown}} {{result=[[[[@{marksmanship_rating}+@{thrown_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{thrown_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Thrown <span name='attr_thrown_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_marksmanship' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_marksmanship'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='bows'>Bows</option>
+										<option value='crossbows'>Crossbows</option>
+										<option value='siege'>Siege</option>
+										<option value='thrown'>Thrown</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_persuasion_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_persuasion'>8</span></td>
+					<td><button class='sheet-persuasion-label' data-i18n='persuasion' type='roll' value='&{template:iafroll} {{type=Persuasion}} {{result=[[[[@{persuasion_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-persuasion-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_persuasion">
+						</div>
+						<span id='spanout_persuasion'>
+							<input type='hidden' name='attr_bargain_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Bargain}} {{result=[[[[@{persuasion_rating}+@{bargain_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{bargain_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Bargain <span name='attr_bargain_rating'></span>B</button>
+							<input type='hidden' name='attr_charm_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Charm}} {{result=[[[[@{persuasion_rating}+@{charm_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{charm_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Charm <span name='attr_charm_rating'></span>B</button>
+							<input type='hidden' name='attr_convince_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Convince}} {{result=[[[[@{persuasion_rating}+@{convince_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{convince_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Convince <span name='attr_convince_rating'></span>B</button>
+							<input type='hidden' name='attr_incite_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Incite}} {{result=[[[[@{persuasion_rating}+@{incite_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{incite_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Incite <span name='attr_incite_rating'></span>B</button>
+							<input type='hidden' name='attr_intimidate_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Intimidate}} {{result=[[[[@{persuasion_rating}+@{intimidate_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{intimidate_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Intimidate <span name='attr_intimidate_rating'></span>B</button>							
+							<input type='hidden' name='attr_seduce_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Seduce}} {{result=[[[[@{persuasion_rating}+@{seduce_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{seduce_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Seduce <span name='attr_seduce_rating'></span>B</button>							
+							<input type='hidden' name='attr_taunt_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Persuasion+Taunt}} {{result=[[[[@{persuasion_rating}+@{taunt_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{taunt_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Taunt <span name='attr_taunt_rating'></span>B</button>							
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_persuasion' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_persuasion'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='bargain'>Bargain</option>
+										<option value='charm'>Charm</option>
+										<option value='convince'>Convince</option>
+										<option value='incite'>Incite</option>
+										<option value='intimidate'>Intimidate</option>
+										<option value='seduce'>Seduce</option>
+										<option value='taunt'>Taunt</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>				
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_status_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_status'>8</span></td>
+					<td><button class='sheet-status-label' data-i18n='status' type='roll' value='&{template:iafroll} {{type=Status}} {{result=[[[[@{status_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-status-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_status">
+						</div>
+						<span id='spanout_status'>
+							<input type='hidden' name='attr_breeding_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Status+Breeding}} {{result=[[[[@{status_rating}+@{breeding_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{breeding_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Breeding <span name='attr_breeding_rating'></span>B</button>
+							<input type='hidden' name='attr_reputation_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Status+Reputation}} {{result=[[[[@{status_rating}+@{reputation_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{reputation_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Reputation <span name='attr_reputation_rating'></span>B</button>
+							<input type='hidden' name='attr_stewardship_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Status+Stewardship}} {{result=[[[[@{status_rating}+@{stewardship_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{stewardship_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Stewardship <span name='attr_stewardship_rating'></span>B</button>
+							<input type='hidden' name='attr_tournaments_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Status+Tournaments}} {{result=[[[[@{status_rating}+@{tournaments_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{tournaments_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Tournaments <span name='attr_tournaments_rating'></span>B</button>							
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_status' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_status'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='breeding'>Breeding</option>
+										<option value='reputation'>Reputation</option>
+										<option value='stewardship'>Stewardship</option>
+										<option value='tournaments'>Tournaments</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>						
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_stealth_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_stealth'>8</span></td>
+					<td><button class='sheet-stealth-label' data-i18n='stealth' type='roll' value='&{template:iafroll} {{type=Stealth}} {{result=[[[[@{stealth_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-stealth-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_stealth">
+						</div>
+						<span id='spanout_stealth'>
+							<input type='hidden' name='attr_blendin_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Stealth+Blend In}} {{result=[[[[@{stealth_rating}+@{blendin_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{blendin_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Blend In <span name='attr_blendin_rating'></span>B</button>
+							<input type='hidden' name='attr_sneak_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Stealth+Sneak}} {{result=[[[[@{stealth_rating}+@{sneak_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{sneak_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Sneak <span name='attr_sneak_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_stealth' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_stealth'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='blendin'>Blend In</option>
+										<option value='sneak'>Sneak</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>					
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_survival_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_survival'>8</span></td>
+					<td><button class='sheet-survival-label' data-i18n='survival' type='roll' value='&{template:iafroll} {{type=Survival}} {{result=[[[[@{survival_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-survival-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_survival">
+						</div>
+						<span id='spanout_survival'>
+							<input type='hidden' name='attr_forage_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Survival+Forage}} {{result=[[[[@{survival_rating}+@{forage_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{forage_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Forage <span name='attr_forage_rating'></span>B</button>
+							<input type='hidden' name='attr_hunt_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Survival+Hunt}} {{result=[[[[@{survival_rating}+@{hunt_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{hunt_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Hunt <span name='attr_hunt_rating'></span>B</button>
+							<input type='hidden' name='attr_orientation_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Survival+Orientation}} {{result=[[[[@{survival_rating}+@{orientation_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{orientation_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Orientation <span name='attr_orientation_rating'></span>B</button>
+							<input type='hidden' name='attr_track_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Survival+Track}} {{result=[[[[@{survival_rating}+@{track_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{track_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Track <span name='attr_track_rating'></span>B</button>			
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_survival' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_survival'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='forage'>Forage</option>
+										<option value='hunt'>Hunt</option>
+										<option value='orientation'>Orientation</option>
+										<option value='track'>Track</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>		
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_thievery_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_thievery'>8</span></td>
+					<td><button class='sheet-thievery-label' data-i18n='thievery' type='roll' value='&{template:iafroll} {{type=Thievery}} {{result=[[[[@{thievery_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-thievery-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_thievery">
+						</div>
+						<span id='spanout_thievery'>
+							<input type='hidden' name='attr_picklock_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Thievery+Pick Lock}} {{result=[[[[@{thievery_rating}+@{picklock_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{picklock_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Pick Lock <span name='attr_picklock_rating'></span>B</button>
+							<input type='hidden' name='attr_sleightofhand_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Thievery+Sleight of Hand}} {{result=[[[[@{thievery_rating}+@{sleightofhand_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{sleightofhand_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Sleight of Hand <span name='attr_sleightofhand_rating'></span>B</button>					
+							<input type='hidden' name='attr_steal_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Thievery+Steal}} {{result=[[[[@{thievery_rating}+@{steal_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{steal_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Steal <span name='attr_steal_rating'></span>B</button>												
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_thievery' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_thievery'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='picklock'>Pick Lock</option>
+										<option value='sleightofhand'>Sleight of Hand</option>
+										<option value='steal'>Steal</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>		
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_warfare_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_warfare'>8</span></td>
+					<td><button class='sheet-warfare-label' data-i18n='warfare' type='roll' value='&{template:iafroll} {{type=Warfare}} {{result=[[[[@{warfare_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-warfare-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_warfare">
+						</div>
+						<span id='spanout_warfare'>
+							<input type='hidden' name='attr_command_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Warfare+Command}} {{result=[[[[@{warfare_rating}+@{command_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{command_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Command <span name='attr_command_rating'></span>B</button>
+							<input type='hidden' name='attr_strategy_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Warfare+Strategy}} {{result=[[[[@{warfare_rating}+@{strategy_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{strategy_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Strategy <span name='attr_strategy_rating'></span>B</button>
+							<input type='hidden' name='attr_tactics_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Warfare+Tactics}} {{result=[[[[@{warfare_rating}+@{tactics_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{tactics_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Tactics <span name='attr_tactics_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_warfare' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_warfare'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='command'>Command</option>
+										<option value='strategy'>Strategy</option>
+										<option value='tactics'>Tactics</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>
+				<tr class='sheet-ability-row'>
+					<td><input type='number' min="0" max="10" value="2" name='attr_will_rating'></td>
+					<td><span class='sheet-passivescore' name='attr_passive_will'>8</span></td>
+					<td><button class='sheet-will-label' data-i18n='will' type='roll' value='&{template:iafroll} {{type=Will}} {{result=[[[[@{will_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button></td>
+					<td class='sheet-specs sheet-will-specs'>
+					    <div>
+							<input class="sheet-options-flag" type="checkbox" name="attr_hidden_will">
+						</div>
+						<span id='spanout_will'>
+							<input type='hidden' name='attr_courage_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Will+Courage}} {{result=[[[[@{will_rating}+@{courage_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{courage_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Courage <span name='attr_courage_rating'></span>B</button>
+							<input type='hidden' name='attr_coordinate_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Will+Coordinate}} {{result=[[[[@{will_rating}+@{coordinate_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{coordinate_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Coordinate <span name='attr_coordinate_rating'></span>B</button>
+							<input type='hidden' name='attr_dedication_rating' value="0">
+							<button class='sheet-spec-button' type='roll' value='&{template:iafroll} {{type=Will+Dedication}} {{result=[[[[@{will_rating}+@{dedication_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{dedication_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'>Dedication <span name='attr_dedication_rating'></span>B</button>
+						</span>
+					</td>								
+				</tr>								
+				<tr>
+					<td class='sheet-specialities-td' colspan='3'>
+						<input type='hidden' name='attr_hidden_will' class='sheet-hide-specs'>
+						<div class='sheet-specialities-tr'>
+							<fieldset class='repeating_will'>
+								<div class="sheet-flex-box">
+									<input type="number" name='attr_specrating' min="1" value="1">
+									<select name="attr_specname" class="sheet-flexthis">
+										<option value=""></option>
+										<option value='courage'>Courage</option>
+										<option value='coordinate'>Coordinate</option>
+										<option value='dedication'>Dedication</option>
+									</select>					
+								</div>
+							</fieldset>						
+						</div>
+					</td>
+				</tr>		
+			</table>
 		</div>
+	</div>
+	<div class='sheet-row sheet-flex-box' style='margin-bottom: 2px;'>
+		<input type='number' min="0" max="10" value="2" name='attr_language_rating'>
+		<span class='sheet-passivescore' name='attr_passive_will'>8</span>
+		<button class='sheet-language-label' data-i18n='language' type='roll' value='&{template:iafroll} {{type=Language}} {{result=[[[[@{language_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}}'></button>
+		<input type='text' name='attr_language_list' class='sheet-flexthis'>
 	</div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
 			<label class='sheet-qualities-label sheet-mainlabel' data-i18n='qualities'>Qualities</label>
 			<textarea name='attr_qualities'></textarea><!-- TODO: Investigate Qualities. -->
 			<div class='sheet-flex-box'>
-			<label class='sheet-destinypoints-label sheet-mainlabel' data-i18n='destiny'>Destiny Points</label>
-			<div class='sheet-destinypoints'>
-				<input type='checkbox' name='attr_destiny_1'>
-				<input type='checkbox' name='attr_destiny_2'>
-				<input type='checkbox' name='attr_destiny_3'>
-				<input type='checkbox' name='attr_destiny_4'>
-				<input type='checkbox' name='attr_destiny_5'>
-				<input type='checkbox' name='attr_destiny_6'>
-				<input type='checkbox' name='attr_destiny_7'>
-				<input type='checkbox' name='attr_destiny_8'>
-			</div>
+				<label class='sheet-destinypoints-label sheet-mainlabel' data-i18n='destiny'>Destiny Points</label>
+				<div class='sheet-destinypoints'>
+					<input type='checkbox' name='attr_destiny_1'>
+					<input type='checkbox' name='attr_destiny_2'>
+					<input type='checkbox' name='attr_destiny_3'>
+					<input type='checkbox' name='attr_destiny_4'>
+					<input type='checkbox' name='attr_destiny_5'>
+					<input type='checkbox' name='attr_destiny_6'>
+					<input type='checkbox' name='attr_destiny_7'>
+					<input type='checkbox' name='attr_destiny_8'>
+				</div>
 			</div>
 		</div>
 		<div class='sheet-col sheet-2colrow'>
 			<div class='sheet-col'>
 				<label class='sheet-intrigue-label sheet-mainlabel sheet-nopadding' data-i18n='intrigue'>Intrigue</label>
 				<label class='sheet-intriguedefense-label' data-i18n='intriguedef'>Intrigue Defense</label>
-				<input type='number' value='@{agility_rating}+@{cunning_rating}+@{status_rating}' disabled="true">
+				<span class='sheet-derivedstat' name="attr_intriguedef">6</span>
 				<label class='sheet-composure-label' data-i18n='composure'>Composure</label>
-				<input type='number' value='@{will_rating}*3' disabled="true">
+				<span class='sheet-derivedstat' name="attr_composure">6</span>
 			</div>
 			<div class='sheet-col'>
 				<label class='sheet-combat-label sheet-mainlabel sheet-nopadding' data-i18n='combat'>Combat</label>
 				<label class='sheet-combatdefense-label' data-i18n='combatdef'>Combat Defense</label>
-				<input type='number' value='@{agility_rating}+@{athletics_rating}+@{awareness_rating}+@{defensive_bonus}-@{armor_penalty}' disabled="true">
+				<span class='sheet-derivedstat' name="attr_combatdef">6</span>
 				<label class='sheet-health-label' data-i18n='health'>Health</label>
-				<input type='number' value='@{endurance_rating}*3' disabled="true">				
+				<span class='sheet-derivedstat' name="attr_health">	6</span>
 			</div>
 		</div>
 	</div>
@@ -126,16 +800,38 @@
 		<div class='sheet-leftcol'>
 			<label class='sheet-weapons-label sheet-mainlabel sheet-nopadding' data-i18n='weapons'>Weapons</label>
 			<div class='sheet-flex-box'>
-			<label class='sheet-attack-label sheet-mainlabel' data-i18n='attack'>Attack</label>
-			<label class='sheet-testdice-label sheet-mainlabel' data-i18n='testdice'>Test Dice</label>
-			<label class='sheet-weapondamage-label sheet-mainlabel' data-i18n='Weapon Damage'>Weapon Damage</label>
+				<label class='sheet-attack-label sheet-mainlabel' data-i18n='attack'>Attack Name</label>
+				<label class='sheet-testdice-label sheet-mainlabel' data-i18n='speciality'>Speciality</label>
+				<label class='sheet-testdice-label sheet-mainlabel' data-i18n='damageability'>Damage Ability</label>
+				<label class='sheet-weapondamage-label sheet-mainlabel' data-i18n='modifier'>Modifier</label>
+				<label class='sheet-weapondamage-label sheet-mainlabel' data-i18n='qualities'>Qualities</label>
 			</div>
+			<input type='hidden' name='attr_none_rating' value="0">
 			<fieldset class='repeating_attacks'>
-				<!-- Attacks -->
+				<!-- Attacks -->				
 				<div class='sheet-flex-box'>
-				<input type='text' name='attr_attack_name' class='sheet-flexthis'>
-				<input type='number' name='attr_dice'>
-				<input type='text' name='attr_attack_damage' class='sheet-flexthis'>
+					<button type='roll' name="attr_aroll" value='&{template:iafattack} {{attack_name=@{attack_name}}} {{attack_spec=@{attack_spec}}} {{result=[[[[@{fighting_rating}+@{axes_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{axes_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}} {{damage=[[@{agility_rating}d6dl@{wound_total} + @{attack_damage_modifier} - @{injury_total}]]}}'></button>
+					<input type='text' name='attr_attackname' class='sheet-attacktext'>
+					<select name='attr_attackspec' class='sheet-attackselect'>
+						<option value='axes' selected>Axes</option>
+						<option value='bludgeons'>Bludgeons</option>
+						<option value='brawling'>Brawling</option>
+						<option value='fencing'>Fencing</option>
+						<option value='longblades'>Long Blades</option>
+						<option value='polearms'>Pole-Arms</option>
+						<option value='shields'>Shields</option>
+						<option value='shortblades'>Short Blades</option>
+						<option value='spears'>Spears</option>
+					</select>
+					<select name='attr_dmgability' class='sheet-attackselect'>
+						<option value='agility'>Agility</option>
+						<option value='animalhandling'>Animal Handling</option>						
+						<option value='athletics'>Athletics</option>
+						<option value='none'>None</option>
+					</select>
+					<input type='number' name='attr_damagemod' value="0">
+					
+					<input type='text' name='attr_qualities' class='sheet-flexthis'>
 				</div>
 			</fieldset>
 		</div>
@@ -145,74 +841,109 @@
 			<label class='sheet-armorrating-label sheet-mainlabel  sheet-nopadding' data-i18n='armorrating'>Armor Rating</label>
 			<input type='number' min="0" name='attr_armor_rating' value="0">
 			<label class='sheet-armorpenalty-label sheet-mainlabel sheet-nopadding' data-i18n='armorpenalty'>Armor Penalty</label>
-			</div>
+			<input type='number' min="0" name='attr_armor_penalty' value="0">
+			<label class='sheet-armorpenalty-label sheet-mainlabel sheet-nopadding' data-i18n='defbonus'>Defensive Bonus</label>
+			<input type='number' min="0" name='attr_defensive_bonus' value="0">
+		</div>
 	</div>
 	<div class='sheet-flex-box'>
-	<label class='sheet-damage-label sheet-mainlabel ' data-i18n='damage'>Damage</label>
-	<div class='sheet-flexthis'><!--TODO : Health = END * 3 -->
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_1'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_2'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_3'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_4'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_5'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_6'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_7'><br>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_8'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_9'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_10'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_11'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_12'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_13'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_14'><br>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_15'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_16'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_17'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_18'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_19'>		   
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_20'>
-		<input type='checkbox' class='sheet-dmgbox' name='attr_damage_21'>		   
-	</div>
-	<label class='sheet-injuries-label sheet-mainlabel' data-i18n='injuries'>Injuries</label>
-	<div class='sheet-flexthis'><!--TODO: Injuries = END -->
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_1'>
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_2'>
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_3'>			
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_4'>
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_5'>
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_6'>
-		<input type='checkbox' class='sheet-injurybox' name='attr_injury_7'>
-	</div>
-	<label class='sheet-wounds-label sheet-mainlabel' data-i18n='wounds'>Wounds</label>
-	<div class='sheet-flexthis'><!--TODO: Wounds = END -->
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_1'>
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_2'>
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_3'>
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_4'>
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_5'>
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_6'>
-		<input type='checkbox' class='sheet-woundbox' name='attr_wounds_7'>		
-	</div>
+		<label class='sheet-damage-label sheet-mainlabel ' data-i18n='damage'>Damage</label>
+		<div class='sheet-flexthis sheet-center'>
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_1'>
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_2'>		   
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_3'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_4' value="0">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_4'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_5' value="0">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_5'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_6' value="0">			
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_6'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_7' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_7'><br>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_8' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_8'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_9' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_9'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_10' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_10'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_11' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_11'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_12' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_12'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_13' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_13'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_14' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_14'><br>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_15' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_15'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_16' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_16'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_17' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_17'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_18' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_18'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_19' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_19'>		   
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_20' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_20'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_damage_hide_21' value="1">
+			<input type='checkbox' class='sheet-dmgbox' name='attr_damage_21'>		   
+		</div>
+		<label class='sheet-injuries-label sheet-mainlabel' data-i18n='injuries'>Injuries</label>
+		<input type='hidden' name='attr_injury_total' value='0'>
+		<div class='sheet-flexthis sheet-center'>
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_1'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_injury_hide_2' value="0">
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_2'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_injury_hide_3' value="1">
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_3'>			
+			<input type='hidden' class='sheet-hidecheck' name='attr_injury_hide_4' value="1">
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_4'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_injury_hide_5' value="1">
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_5'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_injury_hide_6' value="1">
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_6'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_injury_hide_7' value="1">
+			<input type='checkbox' class='sheet-injurybox' name='attr_injury_7'>
+		</div>
+		<label class='sheet-wounds-label sheet-mainlabel' data-i18n='wounds'>Wounds</label>
+		<input type='hidden' name='attr_wound_total' value='0'>
+		<div class='sheet-flexthis sheet-center'>
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_1'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_wound_hide_2' value="0">
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_2'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_wound_hide_3' value="1">
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_3'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_wound_hide_4' value="1">
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_4'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_wound_hide_5' value="1">
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_5'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_wound_hide_6' value="1">
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_6'>
+			<input type='hidden' class='sheet-hidecheck' name='attr_wound_hide_7' value="1">
+			<input type='checkbox' class='sheet-woundbox' name='attr_wounds_7'>		
+		</div>
 	</div>
 </div>
 <div class='sheet-page2'>
-			<input name='attr_character_name' class='sheet-charname'>	
-			<div class='sheet-pagetogglediv'>	
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage'  type='radio' value="1" checked>
-				<span class="sheet-pfradio">H
-				</span>
-			</label>
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage' type='radio' value="2" >
-				<span class="sheet-pfradio">i
-				</span>		
-			</label>
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage' type='radio' value="3" >
-				<span class="sheet-pfradio">y
-				</span>		
-			</label>			
-		</div>
+	<input name='attr_character_name' class='sheet-charname'>	
+	<div class='sheet-pagetogglediv'>	
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage'  type='radio' value="1" checked>
+			<span class="sheet-pfradio">H
+			</span>
+		</label>
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage' type='radio' value="2" >
+			<span class="sheet-pfradio">i
+			</span>		
+		</label>
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage' type='radio' value="3" >
+			<span class="sheet-pfradio">y
+			</span>		
+		</label>			
+	</div>
 	<div class='sheet-2colrow'>
 		<div class='sheet-col'>
 			<label class='sheet-equipment-label sheet-mainlabel sheet-nopadding'>Equipment</label>
@@ -263,28 +994,28 @@
 </div>
 <div class='sheet-page3'>
 	<input name='attr_character_name' class='sheet-charname'>
-			<div class='sheet-pagetogglediv'>	
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage'  type='radio' value="1" checked>
-				<span class="sheet-pfradio">H
-				</span>
-			</label>
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage' type='radio' value="2" >
-				<span class="sheet-pfradio">i
-				</span>		
-			</label>
-			<label class='sheet-pfcontainer'>
-				<input name='attr_charpage' type='radio' value="3" >
-				<span class="sheet-pfradio">y
-				</span>		
-			</label>			
-		</div>
-		<div class='sheet-row'>
+	<div class='sheet-pagetogglediv'>	
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage'  type='radio' value="1" checked>
+			<span class="sheet-pfradio">H
+			</span>
+		</label>
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage' type='radio' value="2" >
+			<span class="sheet-pfradio">i
+			</span>		
+		</label>
+		<label class='sheet-pfcontainer'>
+			<input name='attr_charpage' type='radio' value="3" >
+			<span class="sheet-pfradio">y
+			</span>		
+		</label>			
+	</div>
+	<div class='sheet-row'>
 		<label class='sheet-mainlabel sheet-nopadding'>Notes</label>
 		<textarea name='attr_notes' class="sheet-textareafullsize"></textarea>
 		(More to come here...)
-		</div>
+	</div>
 </div>
 
 <rolltemplate class="sheet-rolltemplate-cinac">
@@ -300,28 +1031,188 @@
 	</table>
 </rolltemplate>
 
+<rolltemplate class="sheet-rolltemplate-iafroll">
+	<table>
+		<tr><th>{{type}}</th></tr>
+		<tr><td>{{result}}</th></tr>
+	</table>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-iafattack">
+	<table>
+		<tr><th><button type='roll' value='{{damage}}'>{{attack_name}}</button></th></tr>
+		<tr><td>Fighting + {{attack_spec}}</td></tr>
+		<tr><td>{{qualities}}</td></tr>
+		<tr><td>{{result}}</th></tr>
+		<tr><td><span class='sheet-flexthis'></span>Damage: {{damage}}<span class='sheet-flexthis'></span></th></tr>
+	</table>
+</rolltemplate>
+
 <script type='text/worker'>
 	"use strict";
 	
-	on("change:repeating_agility", function(eventInfo) {
-		let out = {};
+	var specs = {"agility": ["acrobatics","balance","contortions","dodge","quickness"],
+		"animalhandling": ["charmah","drive","ride","train"],
+		"athletics":["climb","jump","run","strength","swim","throw"],
+		"awareness":["empathy","notice"],
+		"cunning":["decipher","logic","memory"],
+		"deception":["act","bluff","cheat","disguise"],
+		"endurance":["resilience","stamina"],
+		"fighting":["axes","bludgeons","brawling","fencing","longblades","polearms","shields","shortblades","spears"],
+		"healing":["diagnose","treatailment","treatinjury"],
+		"knowledge":["education","research","streetwise"],
+		"marksmanship":["bows","crossbows","siege","thrown"],
+		"persuasion":["bargain","charm","convince","incite","intimidate","seduce","taunt"],
+		"status":["breeding","reputation","stewardship","tournaments"],
+		"stealth":["blendin","sneak"],
+		"survival":["forage","hunt","orientation","track"],
+		"thievery":["picklock","sleightofhand","steal"],
+		"warfare":["command","strategy","tactics"],
+		"will":["courage","coordinate","dedication"]
+	}
+	
+	on("change:repeating_agility change:repeating_animalhandling change:repeating_athletics change:repeating_awareness change:repeating_cunning change:repeating_deception change:repeating_endurance change:repeating_fighting change:repeating_healing change:repeating_knowledge change:repeating_marksmanship change:repeating_persuasion change:repeating_status change:repeating_stealth change:repeating_survival change:repeating_thievery change:repeating_warfare change:repeating_will", function(eventInfo) {		
 		let changedgroup = eventInfo.sourceAttribute.split("_")[1];
-		console.log("DEBUG: "+changedgroup);
+		let out = {};
+		specs[changedgroup].forEach(function (x) { out[x+"_rating"] = 0; });
 		getSectionIDs("repeating_"+changedgroup,function(idarray) {
-			console.log(idarray);
 			idarray = idarray.map(function(x) { return "repeating_"+changedgroup+x; });
 			let idarray2 = [...idarray];
-			idarray = idarray.map(function(x) { return x+"_spec_name"; });
-			idarray2 = idarray2.map(function(x) { return x+"_spec_rating"; });
-			console.log([...idarray,...idarray2]);
+			idarray = idarray.map(function(x) { return x+"_specname"; });
+			idarray2 = idarray2.map(function(x) { return x+"_specrating"; });
 			getAttrs([...idarray,...idarray2], function(values) {
-				console.log(values);
 				idarray2.forEach(function(id) {
-					out[values["repeating_"+changedgroup+id+"_spec_name"]+"_rating"] = values["repeating_"+changedgroup+id+"_spec_rating"];
+					values[id] = values[id] || 1;
+					if(values[id.replace("rating","name")] == undefined || values[id.replace("rating","name")] == "") { return; }					
+					out[values[id.replace("rating","name")]+"_rating"] = values[id];
 				});
-				console.log(out);
 				setAttrs(out);
 			});			
 		});
 	});
+	
+	on("change:awareness_rating change:cunning_rating change:status_rating", function(eventInfo) {
+	    getAttrs(['awareness_rating','cunning_rating','status_rating'], function(values) {
+			setAttrs({'intriguedef':parseInt(values.awareness_rating)+parseInt(values.cunning_rating)+parseInt(values.status_rating)});
+		});
+	});
+	
+	on("change:will_rating", function(eventInfo) {
+	    getAttrs(['will_rating'], function(values) {
+			setAttrs({'composure':parseInt(values.will_rating)*3});
+		});
+	});
+	
+	on("change:awareness_rating change:agility_rating change:athletics_rating change:defensive_bonus change:armor_penalty", function(eventInfo) {
+	    getAttrs(['awareness_rating','agility_rating','athletics_rating','defensive_bonus','armor_penalty'], function(values) {
+			setAttrs({'combatdef':parseInt(values.awareness_rating)+parseInt(values.agility_rating)+parseInt(values.athletics_rating)+parseInt(values.defensive_bonus)-parseInt(values.armor_penalty)});
+		});
+	});
+	
+	on("change:endurance_rating", function(eventInfo) {
+	    getAttrs(['endurance_rating',"damage_1","damage_2","damage_3","damage_4","damage_5","damage_6","damage_7","damage_8","damage_9","damage_10","damage_11","damage_12","damage_13","damage_14","damage_15","damage_16","damage_17","damage_18","damage_19","damage_20","damage_21","injury_1","injury_2","injury_3","injury_4","injury_5","injury_6","injury_7","injury_8","wounds_1","wounds_2","wounds_3","wounds_4","wounds_5","wounds_6","wounds_7","wounds_8"], function(values) {
+			let out = {'health':parseInt(values.endurance_rating)*3};
+			for(let i = 2; i < 8; i++) {
+				out["injury_hide_"+i] = (i <= values.endurance_rating) ? "0" : "1";
+				out["wound_hide_"+i] = (i <= values.endurance_rating) ? "0" : "1";
+				out["damage_hide_"+(i*3-2)] = (i <= values.endurance_rating) ? "0" : "1";
+				out["damage_hide_"+(i*3-1)] = (i <= values.endurance_rating) ? "0" : "1";
+				out["damage_hide_"+(i*3)] = (i <= values.endurance_rating) ? "0" : "1";
+				out["damage_hide_"+(i*3-2)] = (i <= values.endurance_rating) ? values["damage_"+(I*3-2)] : "0";
+				out["damage_hide_"+(i*3-1)] = (i <= values.endurance_rating) ? values["damage_"+(I*3-1)] : "0";
+				out["damage_hide_"+(i*3)] = (i <= values.endurance_rating) ? values["damage_"+(I*3)] : "0";
+				out["wounds_"+(i*3)] = (i <= values.endurance_rating) ? values["wounds_"+(I*3)] : "0";
+				out["injury_"+(i*3)] = (i <= values.endurance_rating) ? values["injury_"+(I*3)] : "0";
+			}
+			setAttrs(out);
+		});
+	});
+	
+	/*
+		on("change:damage_1 change:damage_2 change:damage_3 change:damage_4 change:damage_5 change:damage_6 change:damage_7 change:damage_8 change:damage_9 change:damage_10 change:damage_11 change:damage_12 change:damage_13 change:damage_14 change:damage_15 change:damage_16 change:damage_17 change:damage_18 change:damage_19 change:damage_20 change:damage_21", function(eventInfo) {
+		});
+
+	*/
+	on("change:repeating_attacks", function(eventInfo) {
+		getAttrs(["repeating_attacks_attackspec","repeating_attacks_dmgability","repeating_attacks_damagemod"],function(v) {
+			let x = '&{template:iafattack} {{attack_name=@{attackname}}} {{attack_spec=@{attackspec}}} {{result=[[[[@{fighting_rating}+@{##C##_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{##C##_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}} {{damage=[[@{##D##_rating}d6dl@{wound_total} + ##E## - @{injury_total}]]}} {{qualities=@{qualities}}}'.replace(/##C##/g,v.repeating_attacks_attackspec).replace(/##D##/g,v.repeating_attacks_dmgability).replace(/##E##/g,v.repeating_attacks_damagemod);
+			setAttrs({"repeating_attacks_aroll":x});
+		});
+	});
+	
+	on("change:injury_1 change:injury_2 change:injury_3 change:injury_4 change:injury_5 change:injury_6 change:injury_7",function (eventInfo) {
+		let total = 0;
+		getAttrs(["injury_1","injury_2","injury_3","injury_4","injury_5","injury_6","injury_7"], function(v) {
+			for(let i = 1; i < 8; i++) {
+				if(v["injury_"+i] == "on") {
+					total++;
+				}
+			}
+			setAttrs({"injury_total":total});		   
+		})
+	});
+	
+	on("change:wounds_1 change:wounds_2 change:wounds_3 change:wounds_4 change:wounds_5 change:wounds_6 change:wounds_7",function (eventInfo) {
+		let total = 0;
+		getAttrs(["wounds_1","wounds_2","wounds_3","wounds_4","wounds_5","wounds_6","wounds_7"], function(v) {
+			for(let i = 1; i < 8; i++) {
+				if(v["wounds_"+i] == "on") {
+					total++;
+				}
+			}
+			setAttrs({"wound_total":total});		   
+		})
+	});	
+	
+	on("change:agility_rating change:animalhandling_rating change:athletics_rating change:awareness_rating change:cunning_rating change:deception_rating change:endurance_rating change:fighting_rating change:healing_rating change:knowledge_rating change:marksmanship_rating change:persuasion_rating change:status_rating change:stealth_rating change:survival_rating change:thievery_rating change:warfare_rating change:will_rating change:language_rating change:wound_total change:injury_total",function(eventInfo) {
+		let out = {};
+		getAttrs(["agility_rating","animalhandling_rating","athletics_rating","awareness_rating","cunning_rating","deception_rating","endurance_rating","fighting_rating","healing_rating","knowledge_rating","marksmanship_rating","persuasion_rating","status_rating","stealth_rating","survival_rating","thievery_rating","warfare_rating","will_rating","language_rating","wound_total","injury_total"],function(v) {
+			["agility","animalhandling","athletics","awareness","cunning","deception","endurance","fighting","healing","knowledge","marksmanship","persuasion","status","stealth","survival","thievery","warfare","will","language"].forEach(function (stat) {
+				out["passive_"+stat] = (v[stat+"_rating"]-v.wound_total)*4 - v.injury_total;
+			});			
+			setAttrs(out);
+		});
+	});
+	
+	on("sheet:opened", function(eventInfo) {
+		getAttrs(["setup_done","name","agility","animalHandling","athletics","awareness","cunning","deception","endurance","fighting","healing","language","knowledge","marksmanship","persuasion","status","stealth","survival","thievery","warfare","will","armorRating","armorPenalty","armorName","destinyPoints","damage","injuries","wounds","Virtue","Vice","Allies","Retainers","Qualities","Drawbacks","Motivation","Goal","Personality","Mannerisms","textarea_1","textarea_2","textarea_3","textarea_4","weapon1","testDice1","damage1","ability1","weapon2","testDice2","damage2","ability2","weapon3","testDice3","damage3","ability3","weapon4","testDice4","damage4","ability4"], function(v) {
+			if(v.setup_done == "1") { return; }
+			if(v.name == undefined) { setAttrs({"setup_done":"1"}); return; }
+			console.log("===START SHEET MIGRATION===");
+			console.log(v);			
+			let out = {
+			"setup_done":"1",
+			"armor_rating":v.armorRating||"0",
+			"armor_penalty":v.armorPenalty||"0",
+			"armor":v.armorName||"",
+			"qualities":(v.Qualities||"")+"\n"+(v.Drawbacks||""),
+			"features":(v.Motivation||"")+"\n"+(v.Goal||"")+"\n"+(v.Personality||""),
+			"notes":(v.textarea_1||"")+"\n"+(v.textarea_4||""),
+			"personal_history":v.textarea_2||"",
+			"equipment":v.textarea_3||""
+			};
+			["agility","animalHandling","athletics","awareness","cunning","deception","endurance","fighting","healing","language","knowledge","marksmanship","persuasion","status","stealth","survival","thievery","warfare","will"].forEach(function (attrib) { 
+				out[attrib+"_rating"] = v[attrib] || "2";
+			});
+			for(let i = 1; i <= parseInt(v.damage); i++) {
+				out["damage_"+i] = "on";
+			}
+			for(let i = 1; i <= parseInt(v.injuries); i++) {
+				out["injury_"+i] = "on";
+			}
+			for(let i = 1; i <= parseInt(v.wounds); i++) {
+				out["wounds_"+i] = "on";
+			}
+			for(let i = 1; i < 5; i++) {
+				if(v["weapon"+i] == undefined) { continue; }
+				let id = generateRowID();
+				out["repeating_attacks_"+id+"_attackname"] = v["weapon"+i] || "";
+				out["repeating_attacks_"+id+"_damagemod"] = v["damage"+i] || "0";
+				out["repeating_attacks_"+id+"_dmgability"] = (v["ability"+i] || "").replace(/[@{}0]/g,"");
+			}
+			setAttrs(out);
+			console.log(out);
+		});
+	});
+	
 </script>
