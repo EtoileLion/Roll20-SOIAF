@@ -141,6 +141,10 @@ label {
 	padding: 5px 0px;
 }
 
+.sheet-attack-label {
+	width:142px;
+}
+
 .sheet-spec-button {
 	display: none;
 }
@@ -298,6 +302,15 @@ tr:not(:first-child) {
 .sheet-hidecheck[value="1"] + input {
 	display: none;
 }
+.sheet-dmgability-label {
+	width: 127px;
+}
+.sheet-atkspec-label {
+	width: 120px;
+}
+.sheet-dmgmod-label {
+	width: 45px;
+}
 
 /* Ice */
 .sheet-styler[value='ice'] ~ .sheet-page .sheet-mainlabel {
@@ -437,3 +450,4 @@ tr:not(:first-child) {
 	color: #B31515;
 	border: none;
 }
+
