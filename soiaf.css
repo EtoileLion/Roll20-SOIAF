@@ -389,6 +389,7 @@ tr:not(:first-child) {
 	background-color: #EEE;
 	font-size: x-small;
 	font-style: italic;
+	text-transform:capitalize;
 }
 .sheet-rolltemplate-iafattack tr:nth-child(3) td {
 	text-align: center;

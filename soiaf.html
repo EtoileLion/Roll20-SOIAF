@@ -1,5 +1,5 @@
 <!--- Project Valyrian --->
-<!--- Version 1.1.2 Beta --->
+<!--- Version 1.1.3 Beta --->
 <!--- By EtoileLion --->
 <!--- Song of Ice and Fire, Game of Thrones, and all associated copyrights and trademarks belong to their respective authors. --->
 <!--- Released under MIT License for use with Roll20 --->
@@ -933,7 +933,7 @@
 			<fieldset class='repeating_attacks'>
 				<!-- Attacks -->				
 				<div class='sheet-flex-box'>
-					<button type='roll' name="attr_aroll" value='&{template:iafattack} {{attack_name=@{attack_name}}} {{attack_spec=@{attack_spec}}} {{result=[[[[@{fighting_rating}+@{axes_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{axes_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}} {{damage=[[@{agility_rating}d6dl@{wound_total} + @{attack_damage_modifier} - @{injury_total}]]}}'></button>
+					<button type='roll' name="attr_aroll" value='&{template:iafattack} {{attack_name=@{attack_name}}} {{attackability=Fighting}} {{attack_spec=@{attack_spec}}} {{result=[[[[@{fighting_rating}+@{axes_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{axes_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}} {{damage=[[@{agility_rating}d6dl@{wound_total} + @{attack_damage_modifier} - @{injury_total}]]}}'></button>
 					<input type='text' name='attr_attackname' class='sheet-attacktext'>
 					<select name='attr_attackspec' class='sheet-attackselect'>
 						<optgroup label="Fighting">
@@ -1094,7 +1094,7 @@
 <rolltemplate class="sheet-rolltemplate-iafattack">
 	<table>
 		<tr><th><button type='roll' value='{{damage}}'>{{attack_name}}</button></th></tr>
-		<tr><td>Fighting + {{attack_spec}}</td></tr>
+		<tr><td>{{attackability}} + {{attack_spec}}</td></tr>
 		<tr><td>{{qualities}}</td></tr>
 		<tr><td>{{result}}</th></tr>
 		<tr><td><span class='sheet-flexthis'></span>Damage: {{damage}}<span class='sheet-flexthis'></span></th></tr>
@@ -1190,7 +1190,7 @@
 	on("change:repeating_attacks", function(eventInfo) {
 		getAttrs(["repeating_attacks_attackspec","repeating_attacks_dmgability","repeating_attacks_damagemod"],function(v) {
 		    let ability = (['bows','crossbows','siege','thrown'].includes(v.repeating_attacks_attackspec)) ? "marksmanship" : "fighting";
-			let x = '&{template:iafattack} {{attack_name=@{attackname}}} {{attack_spec=@{attackspec}}} {{result=[[[[@{##F##_rating}+@{##C##_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{##C##_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}} {{damage=[[@{##D##_rating}d6dl@{wound_total} + ##E## - @{injury_total}]]}} {{qualities=@{qualities}}}'.replace(/##C##/g,v.repeating_attacks_attackspec).replace(/##D##/g,v.repeating_attacks_dmgability).replace(/##E##/g,v.repeating_attacks_damagemod).replace(/##F##/,ability );
+			let x = '&{template:iafattack} {{attack_name=@{attackname}}} {{attack_spec=##C##}} {{attackability=##F##}} {{result=[[[[@{##F##_rating}+@{##C##_rating}+?{"Extra Task Dice"|0}+?{"Bonus Dice"|0}]]d6dl[[@{##C##_rating}+?{"Extra Task Dice"|0}+@{wound_total}]] + ?{"Flat Modifier"|0} - @{injury_total}]]}} {{damage=[[@{##D##_rating}d6dl@{wound_total} + ##E## - @{injury_total}]]}} {{qualities=@{qualities}}}'.replace(/##C##/g,v.repeating_attacks_attackspec).replace(/##D##/g,v.repeating_attacks_dmgability).replace(/##E##/g,v.repeating_attacks_damagemod).replace(/##F##/g,ability);
 			setAttrs({"repeating_attacks_aroll":x});
 		});
 	});
